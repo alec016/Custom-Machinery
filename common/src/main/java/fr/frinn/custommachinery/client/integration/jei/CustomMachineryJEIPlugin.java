@@ -3,11 +3,10 @@ package fr.frinn.custommachinery.client.integration.jei;
 import com.google.common.collect.Lists;
 import dev.architectury.registry.fuel.FuelRegistry;
 import fr.frinn.custommachinery.CustomMachinery;
+import fr.frinn.custommachinery.api.ICustomMachineryAPI;
 import fr.frinn.custommachinery.api.guielement.IGuiElement;
-import fr.frinn.custommachinery.client.integration.jei.experience.ExperienceIngredientHelper;
-import fr.frinn.custommachinery.common.util.slot.FilterSlotItemComponent;
-import fr.frinn.custommachinery.impl.integration.jei.WidgetToJeiIngredientRegistry;
 import fr.frinn.custommachinery.client.integration.jei.energy.EnergyIngredientHelper;
+import fr.frinn.custommachinery.client.integration.jei.experience.ExperienceIngredientHelper;
 import fr.frinn.custommachinery.client.screen.CustomMachineScreen;
 import fr.frinn.custommachinery.common.crafting.craft.CustomCraftRecipe;
 import fr.frinn.custommachinery.common.crafting.machine.CustomMachineRecipe;
@@ -15,7 +14,9 @@ import fr.frinn.custommachinery.common.guielement.ProgressBarGuiElement;
 import fr.frinn.custommachinery.common.init.CustomMachineItem;
 import fr.frinn.custommachinery.common.init.Registration;
 import fr.frinn.custommachinery.common.util.Comparators;
+import fr.frinn.custommachinery.common.util.slot.FilterSlotItemComponent;
 import fr.frinn.custommachinery.impl.integration.jei.CustomIngredientTypes;
+import fr.frinn.custommachinery.impl.integration.jei.WidgetToJeiIngredientRegistry;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -36,6 +37,7 @@ import mezz.jei.api.runtime.IClickableIngredient;
 import mezz.jei.api.runtime.IRecipesGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Rect2i;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -174,13 +176,22 @@ public class CustomMachineryJEIPlugin implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         CustomMachinery.MACHINES.forEach((id, machine) -> {
-            RecipeType<?> type = CMRecipeTypes.fromID(id);
-            if(type != null) {
-                List<ResourceLocation> catalysts = machine.getCatalysts();
-                if(!catalysts.contains(id))
-                    registration.addRecipeCatalyst(CustomMachineItem.makeMachineItem(id), type);
-                machine.getCatalysts().stream().filter(CustomMachinery.MACHINES::containsKey).forEach(catalyst -> registration.addRecipeCatalyst(CustomMachineItem.makeMachineItem(catalyst), type));
-            }
+            machine.getRecipeIds().forEach(recipeId -> {
+                RecipeType<?> type = CMRecipeTypes.fromID(recipeId);
+                if(type != null) {
+                    List<ResourceLocation> catalysts = machine.getCatalysts();
+                    if(!catalysts.contains(id))
+                        registration.addRecipeCatalyst(CustomMachineItem.makeMachineItem(id), type);
+                    machine.getCatalysts().forEach(catalyst -> {
+                        if(CustomMachinery.MACHINES.containsKey(catalyst))
+                            registration.addRecipeCatalyst(CustomMachineItem.makeMachineItem(catalyst), type);
+                        else if(Registration.REGISTRIES.get(Registry.ITEM_REGISTRY).contains(catalyst))
+                            registration.addRecipeCatalyst(new ItemStack(Registration.REGISTRIES.get(Registry.ITEM_REGISTRY).get(catalyst)), type);
+                        else
+                            ICustomMachineryAPI.INSTANCE.logger().error("Invalid catalyst '{}' for machine '{}'. Not a machine or item id", catalyst, id);
+                    });
+                }
+            });
         });
     }
 
