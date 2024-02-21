@@ -7,11 +7,11 @@
       "properties" : {
         "ambient_sound" : {
           "type" : "string",
-          "pattern" : "[A-z]+:[A-z]+"
+          "pattern" : "[a-z]+[a-z|_]*:[a-z]+[a-z|_|/]*"
         },
         "block" : {
           "type" : "string",
-          "pattern" : "[A-z]+:[A-z]+"
+          "pattern" : "[a-z]+[a-z|_]*:[a-z]+[a-z|_|/]*"
         },
         "color" : {
           "type" : "integer",
@@ -19,11 +19,11 @@
         },
         "interaction_sound" : {
           "type" : "string",
-          "pattern" : "[A-z]+:[A-z]+"
+          "pattern" : "[a-z]+[a-z|_]*:[a-z]+[a-z|_|/]*"
         },
         "item" : {
           "type" : "string",
-          "pattern" : "[A-z]+:[A-z]+"
+          "pattern" : "[a-z]+[a-z|_]*:[a-z]+[a-z|_|/]*"
         },
         "light" : {
           "type" : "integer",
@@ -80,11 +80,11 @@
       "properties" : {
         "ambient_sound" : {
           "type" : "string",
-          "pattern" : "[A-z]+:[A-z]+"
+          "pattern" : "[a-z]+[a-z|_]*:[a-z]+[a-z|_|/]*"
         },
         "block" : {
           "type" : "string",
-          "pattern" : "[A-z]+:[A-z]+"
+          "pattern" : "[a-z]+[a-z|_]*:[a-z]+[a-z|_|/]*"
         },
         "color" : {
           "type" : "integer",
@@ -103,11 +103,11 @@
         },
         "interaction_sound" : {
           "type" : "string",
-          "pattern" : "[A-z]+:[A-z]+"
+          "pattern" : "[a-z]+[a-z|_]*:[a-z]+[a-z|_|/]*"
         },
         "item" : {
           "type" : "string",
-          "pattern" : "[A-z]+:[A-z]+"
+          "pattern" : "[a-z]+[a-z|_]*:[a-z]+[a-z|_|/]*"
         },
         "light" : {
           "type" : "integer",
@@ -204,8 +204,7 @@
               "exclusiveMinimum" : 0
             },
             "retrieve" : {
-              "type" : "boolean",
-              "exclusiveMinimum" : 0
+              "type" : "boolean"
             },
             "slots" : {
               "type" : "array",
@@ -233,7 +232,7 @@
               "type" : "array",
               "items" : {
                 "type" : "string",
-                "pattern" : "[A-z]+:[A-z]+"
+                "pattern" : "[a-z]+[a-z|_]*:[a-z]+[a-z|_|/]*"
               }
             },
             "id" : {
@@ -289,11 +288,12 @@
         },
         "cooldown" : {
           "type" : "integer",
-          "format" : "int32"
+          "format" : "int32",
+          "minimum" : 1
         },
         "type" : {
           "type" : "string",
-          "enum" : [ "MACHINE", "CRAFT" ]
+          "pattern" : "custommachinery:[machne|craft]"
         }
       },
       "required" : [ "type" ]
@@ -310,7 +310,8 @@
             "type" : "string"
           },
           "font" : {
-            "type" : "string"
+            "type" : "string",
+            "pattern" : "[a-z]+[a-z|_]*:[a-z]+[a-z|_|/]*"
           },
           "italic" : {
             "type" : "boolean"

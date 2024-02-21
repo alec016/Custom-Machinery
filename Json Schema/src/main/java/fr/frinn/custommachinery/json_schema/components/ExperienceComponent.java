@@ -9,7 +9,6 @@ public class ExperienceComponent extends Component {
   @Positive
   private int capacity;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  @Positive
   private boolean retrieve;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   private List<String> slots;

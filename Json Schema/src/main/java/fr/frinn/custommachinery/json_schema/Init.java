@@ -16,6 +16,7 @@ import java.io.FileWriter;
 
 public class Init {
   public static final String RL = "[a-z]+[a-z|_]*:[a-z]+[a-z|_|/]*";
+
   public static void main (String[] args) {
     JacksonModule jacksonModule = new JacksonModule(JacksonOption.RESPECT_JSONPROPERTY_REQUIRED);
     JakartaValidationModule jakartaModule = new JakartaValidationModule(JakartaValidationOption.INCLUDE_PATTERN_EXPRESSIONS);

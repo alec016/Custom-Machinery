@@ -1,30 +1,18 @@
 package fr.frinn.custommachinery.json_schema;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Pattern;
 
 public class Processor {
-  public static final Processor DEFAULT = new Processor();
   @JsonProperty(access = JsonProperty.Access.READ_WRITE, required = true)
-  private ProcessorType type = ProcessorType.MACHINE;
+  @Pattern(regexp = "custommachinery:[machne|craft]")
+  private String type;
 
   @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-  private int amount = 1;
+  private int amount;
 
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  private int cooldown = 20;
-
-  private enum ProcessorType {
-    MACHINE("machine"),
-    CRAFT("craft");
-
-    private final String type;
-
-    ProcessorType(String type) {
-      this.type = type;
-    }
-
-    public boolean isValid(String type) {
-      return this.type.equalsIgnoreCase(type);
-    }
-  }
+  @Min(1)
+  private int cooldown;
 }
