@@ -80,7 +80,7 @@
         },
         "block" : {
           "type" : "string",
-          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
         },
         "color" : {
           "type" : "integer",
@@ -121,7 +121,7 @@
         },
         "item" : {
           "type" : "string",
-          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
         },
         "light" : {
           "type" : "integer",
@@ -446,11 +446,16 @@
             "type" : "boolean"
           },
           "color" : {
-            "type" : "string"
+            "anyOf" : [ {
+              "type" : "string"
+            }, {
+              "type" : "integer",
+              "format" : "int32"
+            } ]
           },
           "font" : {
             "type" : "string",
-            "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
+            "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
           },
           "italic" : {
             "type" : "boolean"
@@ -461,10 +466,14 @@
           "strikethrough" : {
             "type" : "boolean"
           },
+          "text" : {
+            "type" : "string"
+          },
           "underlined" : {
             "type" : "boolean"
           }
-        }
+        },
+        "required" : [ "text" ]
       }
     }
   },
