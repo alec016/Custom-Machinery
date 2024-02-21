@@ -28,6 +28,7 @@ public class Appearance extends AppearanceBuilder {
   > tool_type;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   @Pattern(regexp = ML)
+  @JsonSubTypes({ @JsonSubTypes.Type(String.class) })
   private List<
     @Pattern(regexp = ML)
     String

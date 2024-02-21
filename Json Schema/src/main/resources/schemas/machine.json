@@ -116,11 +116,8 @@
           "maximum" : 15
         },
         "mining_level" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string",
-            "pattern" : "[minecraft:needs_[stone|iron|diamond]|forge:needs_netherite]_tool"
-          }
+          "type" : "string",
+          "pattern" : "[minecraft:needs_[stone|iron|diamond]|forge:needs_netherite]_tool"
         },
         "paused" : {
           "$ref" : "#/$defs/AppearanceBuilder"
@@ -152,7 +149,7 @@
       "type" : "array",
       "items" : {
         "type" : "string",
-        "pattern" : "[A-z]+:[A-z]+"
+        "pattern" : "[a-z]+[a-z|_]*:[a-z]+[a-z|_|/]*"
       }
     },
     "components" : {
