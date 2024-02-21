@@ -25,17 +25,6 @@
         }
       }
     },
-    "ChunkLoadComponent" : {
-      "type" : "object",
-      "properties" : {
-        "radius" : {
-          "type" : "integer",
-          "format" : "int32",
-          "minimum" : 1,
-          "maximum" : 32
-        }
-      }
-    },
     "ComponentIOMode" : {
       "type" : "string",
       "enum" : [ "INPUT", "OUTPUT", "BOTH", "NONE" ]
@@ -75,226 +64,6 @@
     "Element" : {
       "type" : "object"
     },
-    "EnergyComponent" : {
-      "type" : "object",
-      "properties" : {
-        "capacity" : {
-          "type" : "integer",
-          "format" : "int64",
-          "exclusiveMinimum" : 0
-        },
-        "config" : {
-          "$ref" : "#/$defs/Config"
-        },
-        "maxInput" : {
-          "type" : "integer",
-          "format" : "int64",
-          "exclusiveMinimum" : 0
-        },
-        "maxOutput" : {
-          "type" : "integer",
-          "format" : "int64",
-          "exclusiveMinimum" : 0
-        }
-      },
-      "required" : [ "capacity" ]
-    },
-    "ExperienceComponent" : {
-      "type" : "object",
-      "properties" : {
-        "capacity" : {
-          "type" : "integer",
-          "format" : "int32",
-          "exclusiveMinimum" : 0
-        },
-        "retrieve" : {
-          "type" : "boolean"
-        },
-        "slots" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        }
-      },
-      "required" : [ "capacity" ]
-    },
-    "FluidComponent" : {
-      "type" : "object",
-      "properties" : {
-        "capacity" : {
-          "type" : "integer",
-          "format" : "int64",
-          "exclusiveMinimum" : 0
-        },
-        "config" : {
-          "$ref" : "#/$defs/Config"
-        },
-        "filter" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string",
-            "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
-          }
-        },
-        "id" : {
-          "type" : "string"
-        },
-        "maxInput" : {
-          "type" : "integer",
-          "format" : "int64",
-          "exclusiveMinimum" : 0
-        },
-        "maxOutput" : {
-          "type" : "integer",
-          "format" : "int64",
-          "exclusiveMinimum" : 0
-        },
-        "mode" : {
-          "$ref" : "#/$defs/ComponentIOMode"
-        },
-        "unique" : {
-          "type" : "boolean"
-        }
-      },
-      "required" : [ "capacity", "id" ]
-    },
-    "ItemComponent" : {
-      "type" : "object",
-      "properties" : {
-        "capacity" : {
-          "type" : "integer",
-          "format" : "int32",
-          "minimum" : 1
-        },
-        "config" : {
-          "$ref" : "#/$defs/Config"
-        },
-        "filter" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string",
-            "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
-          }
-        },
-        "id" : {
-          "type" : "string"
-        },
-        "locked" : {
-          "type" : "boolean"
-        },
-        "maxInput" : {
-          "type" : "integer",
-          "format" : "int32",
-          "minimum" : 1
-        },
-        "maxOutput" : {
-          "type" : "integer",
-          "format" : "int32",
-          "minimum" : 1
-        },
-        "mode" : {
-          "$ref" : "#/$defs/ComponentIOMode"
-        },
-        "variant" : {
-          "type" : "string",
-          "pattern" : "custommachinery:[energy|filter|fluid|fuel|result|upgrade]"
-        },
-        "whitelist" : {
-          "type" : "boolean"
-        }
-      },
-      "required" : [ "id" ]
-    },
-    "RedstoneComponent" : {
-      "type" : "object",
-      "properties" : {
-        "comparatorinputid" : {
-          "type" : "string"
-        },
-        "compratorinputtype" : {
-          "anyOf" : [ {
-            "$ref" : "#/$defs/ChunkLoadComponent",
-            "type" : "object",
-            "properties" : {
-              "type" : {
-                "const" : "custommachinery:chunkload"
-              }
-            },
-            "required" : [ "type" ]
-          }, {
-            "$ref" : "#/$defs/EnergyComponent",
-            "type" : "object",
-            "properties" : {
-              "type" : {
-                "const" : "custommachinery:energy"
-              }
-            },
-            "required" : [ "type" ]
-          }, {
-            "$ref" : "#/$defs/ExperienceComponent",
-            "type" : "object",
-            "properties" : {
-              "type" : {
-                "const" : "custommachinery:experience"
-              }
-            },
-            "required" : [ "type" ]
-          }, {
-            "$ref" : "#/$defs/FluidComponent",
-            "type" : "object",
-            "properties" : {
-              "type" : {
-                "const" : "custommachinery:fluid"
-              }
-            },
-            "required" : [ "type" ]
-          }, {
-            "$ref" : "#/$defs/ItemComponent",
-            "type" : "object",
-            "properties" : {
-              "type" : {
-                "const" : "custommachinery:item"
-              }
-            },
-            "required" : [ "type" ]
-          }, {
-            "$ref" : "#/$defs/RedstoneComponent",
-            "type" : "object",
-            "properties" : {
-              "type" : {
-                "const" : "custommachinery:redstone"
-              }
-            },
-            "required" : [ "type" ]
-          } ]
-        },
-        "craftingpoweroutput" : {
-          "type" : "integer",
-          "format" : "int32",
-          "minimum" : 0,
-          "maximum" : 16
-        },
-        "erroredpoweroutput" : {
-          "type" : "integer",
-          "format" : "int32",
-          "minimum" : 0,
-          "maximum" : 16
-        },
-        "idlepoweroutput" : {
-          "type" : "integer",
-          "format" : "int32",
-          "minimum" : 0,
-          "maximum" : 16
-        },
-        "powertopause" : {
-          "type" : "integer",
-          "format" : "int32",
-          "minimum" : 0,
-          "maximum" : 16
-        }
-      }
-    },
     "SideMode" : {
       "type" : "string",
       "enum" : [ "INPUT", "OUTPUT", "BOTH", "NONE" ]
@@ -311,7 +80,7 @@
         },
         "block" : {
           "type" : "string",
-          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
         },
         "color" : {
           "type" : "integer",
@@ -332,7 +101,7 @@
           "anyOf" : [ {
             "type" : "object",
             "properties" : {
-              "break" : {
+              "breeak" : {
                 "type" : "string",
                 "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
               },
@@ -352,7 +121,7 @@
         },
         "item" : {
           "type" : "string",
-          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
         },
         "light" : {
           "type" : "integer",
@@ -421,54 +190,192 @@
       "type" : "array",
       "items" : {
         "anyOf" : [ {
-          "$ref" : "#/$defs/ChunkLoadComponent",
           "type" : "object",
           "properties" : {
+            "radius" : {
+              "type" : "integer",
+              "format" : "int32",
+              "minimum" : 1,
+              "maximum" : 32
+            },
             "type" : {
               "const" : "custommachinery:chunkload"
             }
           },
           "required" : [ "type" ]
         }, {
-          "$ref" : "#/$defs/EnergyComponent",
           "type" : "object",
           "properties" : {
+            "capacity" : {
+              "type" : "integer",
+              "format" : "int64",
+              "exclusiveMinimum" : 0
+            },
+            "config" : {
+              "$ref" : "#/$defs/Config"
+            },
+            "maxInput" : {
+              "type" : "integer",
+              "format" : "int64",
+              "exclusiveMinimum" : 0
+            },
+            "maxOutput" : {
+              "type" : "integer",
+              "format" : "int64",
+              "exclusiveMinimum" : 0
+            },
             "type" : {
               "const" : "custommachinery:energy"
             }
           },
-          "required" : [ "type" ]
+          "required" : [ "capacity", "type" ]
         }, {
-          "$ref" : "#/$defs/ExperienceComponent",
           "type" : "object",
           "properties" : {
+            "capacity" : {
+              "type" : "integer",
+              "format" : "int32",
+              "exclusiveMinimum" : 0
+            },
+            "retrieve" : {
+              "type" : "boolean"
+            },
+            "slots" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
             "type" : {
               "const" : "custommachinery:experience"
             }
           },
-          "required" : [ "type" ]
+          "required" : [ "capacity", "type" ]
         }, {
-          "$ref" : "#/$defs/FluidComponent",
           "type" : "object",
           "properties" : {
+            "capacity" : {
+              "type" : "integer",
+              "format" : "int64",
+              "exclusiveMinimum" : 0
+            },
+            "config" : {
+              "$ref" : "#/$defs/Config"
+            },
+            "filter" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string",
+                "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+              }
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "maxInput" : {
+              "type" : "integer",
+              "format" : "int64",
+              "exclusiveMinimum" : 0
+            },
+            "maxOutput" : {
+              "type" : "integer",
+              "format" : "int64",
+              "exclusiveMinimum" : 0
+            },
+            "mode" : {
+              "$ref" : "#/$defs/ComponentIOMode"
+            },
+            "unique" : {
+              "type" : "boolean"
+            },
             "type" : {
               "const" : "custommachinery:fluid"
             }
           },
-          "required" : [ "type" ]
+          "required" : [ "capacity", "id", "type" ]
         }, {
-          "$ref" : "#/$defs/ItemComponent",
           "type" : "object",
           "properties" : {
+            "capacity" : {
+              "type" : "integer",
+              "format" : "int32",
+              "minimum" : 1
+            },
+            "config" : {
+              "$ref" : "#/$defs/Config"
+            },
+            "filter" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string",
+                "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+              }
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "locked" : {
+              "type" : "boolean"
+            },
+            "maxInput" : {
+              "type" : "integer",
+              "format" : "int32",
+              "minimum" : 1
+            },
+            "maxOutput" : {
+              "type" : "integer",
+              "format" : "int32",
+              "minimum" : 1
+            },
+            "mode" : {
+              "$ref" : "#/$defs/ComponentIOMode"
+            },
+            "variant" : {
+              "type" : "string",
+              "pattern" : "custommachinery:[energy|filter|fluid|fuel|result|upgrade]"
+            },
+            "whitelist" : {
+              "type" : "boolean"
+            },
             "type" : {
               "const" : "custommachinery:item"
             }
           },
-          "required" : [ "type" ]
+          "required" : [ "id", "type" ]
         }, {
-          "$ref" : "#/$defs/RedstoneComponent",
           "type" : "object",
           "properties" : {
+            "comparatorinputid" : {
+              "type" : "string"
+            },
+            "compratorinputtype" : {
+              "type" : "string",
+              "pattern" : "custommachinery:[energy|fluid|item]"
+            },
+            "craftingpoweroutput" : {
+              "type" : "integer",
+              "format" : "int32",
+              "minimum" : 0,
+              "maximum" : 16
+            },
+            "erroredpoweroutput" : {
+              "type" : "integer",
+              "format" : "int32",
+              "minimum" : 0,
+              "maximum" : 16
+            },
+            "idlepoweroutput" : {
+              "type" : "integer",
+              "format" : "int32",
+              "minimum" : 0,
+              "maximum" : 16
+            },
+            "powertopause" : {
+              "type" : "integer",
+              "format" : "int32",
+              "minimum" : 0,
+              "maximum" : 16
+            },
             "type" : {
               "const" : "custommachinery:redstone"
             }
@@ -525,7 +432,7 @@
         },
         "type" : {
           "type" : "string",
-          "pattern" : "custommachinery:[machne|craft]"
+          "pattern" : "custommachinery:[machine|craft]"
         }
       },
       "required" : [ "type" ]
