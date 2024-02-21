@@ -1,6 +1,6 @@
 {
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
-  "$id": "C:/Users/usuario/Desktop/CM 1.19.2 0.9.2/Json Schema/src/main/resources/schemas/machine.json",
+  "$id": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/machine.json",
   "$defs" : {
     "AppearanceBuilder" : {
       "type" : "object",
