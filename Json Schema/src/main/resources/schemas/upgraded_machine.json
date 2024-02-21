@@ -434,10 +434,16 @@
     },
     "name" : {
       "anyOf" : [ {
-        "$ref" : "#/$defs/Tooltip"
+        "$ref" : "#/$defs/Tooltip",
+        "description" : "default value: Upgraded + `parent name`"
       }, {
-        "type" : "string"
+        "type" : "string",
+        "description" : "default value: Upgraded + `parent name`"
       } ]
+    },
+    "parent" : {
+      "type" : "string",
+      "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
     },
     "processor" : {
       "type" : "object",
@@ -475,7 +481,7 @@
       } ]
     }
   },
-  "required" : [ "name" ],
-  "description": "CustomMachinery machine json schema definition",
-  "title": "CustomMachinery Machine"
+  "required" : [ "parent" ],
+  "description": "CustomMachinery upgraded machine json schema definition",
+  "title": "CustomMachinery Upgraded Machine"
 }

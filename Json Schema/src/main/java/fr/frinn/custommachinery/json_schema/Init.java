@@ -30,15 +30,25 @@ public class Init {
 
     SchemaGenerator generator = new SchemaGenerator(configBuilder.build());
     JsonNode machineSchema = generator.generateSchema(Machine.class);
+    JsonNode upgradedMachineSchema = generator.generateSchema(UpgradedMachine.class);
     try {
       String schemaDir = System.getProperty("user.dir") + "/Json Schema/src/main/resources/schemas/";
       File dir = new File(schemaDir);
       if (!dir.exists() && dir.mkdirs()) System.out.println("schema directory created");
+      BufferedWriter writer;
+
       System.out.println("===================== Machine =====================");
       System.out.println(machineSchema.toPrettyString());
-      BufferedWriter writer = new BufferedWriter(new FileWriter(schemaDir + "machine.json"));
+      writer = new BufferedWriter(new FileWriter(schemaDir + "machine.json"));
       writer.write(machineSchema.toPrettyString());
       writer.flush();
+
+      System.out.println("===================== Upgraded Machine =====================");
+      System.out.println(upgradedMachineSchema.toPrettyString());
+      writer = new BufferedWriter(new FileWriter(schemaDir + "upgraded_machine.json"));
+      writer.write(upgradedMachineSchema.toPrettyString());
+      writer.flush();
+
     } catch (Exception e) {
       System.out.println(e + "");
     }
