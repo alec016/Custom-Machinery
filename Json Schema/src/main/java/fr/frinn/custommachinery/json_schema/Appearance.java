@@ -1,6 +1,5 @@
 package fr.frinn.custommachinery.json_schema;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import fr.frinn.custommachinery.json_schema.appearance.AppearanceBuilder;
@@ -18,20 +17,28 @@ public class Appearance extends AppearanceBuilder {
   @Min(0)
   private int resistance;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  private List<
-    @Pattern(regexp = TT)
-    String
-  > tool_type;
+  @JsonSubTypes({
+    @JsonSubTypes.Type(String.class),
+    @JsonSubTypes.Type(List.class)
+  })
+  @Pattern(regexp = TT)
+  private String tool_type;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   @Pattern(regexp = ML)
   private String mining_level;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   private boolean requires_tool;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  @JsonSubTypes(@JsonSubTypes.Type(int[][].class))
+  @JsonSubTypes({
+    @JsonSubTypes.Type(int[][].class),
+    @JsonSubTypes.Type(String.class)
+  })
   private String shape;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  @JsonSubTypes(@JsonSubTypes.Type(int[][].class))
+  @JsonSubTypes({
+    @JsonSubTypes.Type(int[][].class),
+    @JsonSubTypes.Type(String.class)
+  })
   private String shape_collision;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   @Pattern(regexp = Init.RL)

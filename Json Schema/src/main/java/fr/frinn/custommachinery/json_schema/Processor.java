@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Pattern;
 
 public class Processor {
   @JsonProperty(access = JsonProperty.Access.READ_WRITE, required = true)
-  @Pattern(regexp = "custommachinery:[machne|craft]")
+  @Pattern(regexp = "custommachinery:[machine|craft]")
   private String type;
 
   @JsonProperty(access = JsonProperty.Access.READ_ONLY)

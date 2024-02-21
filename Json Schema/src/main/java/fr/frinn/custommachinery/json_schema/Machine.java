@@ -38,7 +38,8 @@ public class Machine {
     private String text;
     @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     @JsonSubTypes({
-      @JsonSubTypes.Type(value = int.class)
+      @JsonSubTypes.Type(value = int.class),
+      @JsonSubTypes.Type(value = String.class)
     })
     private String color;
   }

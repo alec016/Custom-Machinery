@@ -1,12 +1,13 @@
 {
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/machine.json",
   "$defs" : {
     "AppearanceBuilder" : {
       "type" : "object",
       "properties" : {
         "block" : {
           "type" : "string",
-          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
         },
         "color" : {
           "type" : "integer",
@@ -14,7 +15,7 @@
         },
         "item" : {
           "type" : "string",
-          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
         },
         "light" : {
           "type" : "integer",
@@ -133,7 +134,7 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
+            "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
           }
         },
         "id" : {
@@ -173,7 +174,7 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
+            "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
           }
         },
         "id" : {
@@ -310,7 +311,7 @@
         },
         "block" : {
           "type" : "string",
-          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
         },
         "color" : {
           "type" : "integer",
@@ -351,7 +352,7 @@
         },
         "item" : {
           "type" : "string",
-          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
         },
         "light" : {
           "type" : "integer",
@@ -378,17 +379,34 @@
           "$ref" : "#/$defs/AppearanceBuilder"
         },
         "shape" : {
-          "type" : "array"
+          "anyOf" : [ {
+            "type" : "array"
+          }, {
+            "type" : "string"
+          } ]
         },
         "shape_collision" : {
-          "type" : "array"
+          "anyOf" : [ {
+            "type" : "array"
+          }, {
+            "type" : "string"
+          } ]
         },
         "tool_type" : {
-          "type" : "array",
-          "items" : {
+          "anyOf" : [ {
             "type" : "string",
             "pattern" : "minecraft:mineable/[shovel|pickaxe|axe|hoe]"
-          }
+          }, {
+            "type" : "array",
+            "items" : {
+              "anyOf" : [ {
+                "type" : "string"
+              }, {
+                "type" : "array",
+                "items" : { }
+              } ]
+            }
+          } ]
         }
       }
     },
@@ -476,8 +494,12 @@
         "type" : "object",
         "properties" : {
           "color" : {
-            "type" : "integer",
-            "format" : "int32"
+            "anyOf" : [ {
+              "type" : "integer",
+              "format" : "int32"
+            }, {
+              "type" : "string"
+            } ]
           },
           "text" : {
             "type" : "string"
@@ -539,5 +561,7 @@
       }
     }
   },
-  "required" : [ "name" ]
+  "required" : [ "name" ],
+  "description": "CustomMachinery machine json schema definition",
+  "title": "CustomMachinery Machine"
 }
