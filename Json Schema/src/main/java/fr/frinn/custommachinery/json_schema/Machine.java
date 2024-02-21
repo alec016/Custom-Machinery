@@ -10,7 +10,7 @@ import java.util.List;
 public class Machine {
   @JsonProperty(access = JsonProperty.Access.READ_WRITE, required = true)
   @JsonSubTypes({
-    @JsonSubTypes.Type(value = TextComponent.class),
+    @JsonSubTypes.Type(value = Tooltip.class),
     @JsonSubTypes.Type(value = String.class)
   })
   private String name;
@@ -32,15 +32,4 @@ public class Machine {
     @Pattern(regexp = Init.RL)
     String
   > catalysts;
-
-  protected static class TextComponent {
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE, required = true)
-    private String text;
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-    @JsonSubTypes({
-      @JsonSubTypes.Type(value = int.class),
-      @JsonSubTypes.Type(value = String.class)
-    })
-    private String color;
-  }
 }

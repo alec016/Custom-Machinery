@@ -67,6 +67,42 @@
     "SideMode" : {
       "type" : "string",
       "enum" : [ "INPUT", "OUTPUT", "BOTH", "NONE" ]
+    },
+    "Tooltip" : {
+      "type" : "object",
+      "properties" : {
+        "bold" : {
+          "type" : "boolean"
+        },
+        "color" : {
+          "anyOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "integer",
+            "format" : "int32"
+          } ]
+        },
+        "font" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "italic" : {
+          "type" : "boolean"
+        },
+        "obfuscated" : {
+          "type" : "boolean"
+        },
+        "strikethrough" : {
+          "type" : "boolean"
+        },
+        "text" : {
+          "type" : "string"
+        },
+        "underlined" : {
+          "type" : "boolean"
+        }
+      },
+      "required" : [ "text" ]
     }
   },
   "type" : "object",
@@ -398,21 +434,7 @@
     },
     "name" : {
       "anyOf" : [ {
-        "type" : "object",
-        "properties" : {
-          "color" : {
-            "anyOf" : [ {
-              "type" : "integer",
-              "format" : "int32"
-            }, {
-              "type" : "string"
-            } ]
-          },
-          "text" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "text" ]
+        "$ref" : "#/$defs/Tooltip"
       }, {
         "type" : "string"
       } ]
@@ -440,40 +462,7 @@
     "tooltips" : {
       "type" : "array",
       "items" : {
-        "type" : "object",
-        "properties" : {
-          "bold" : {
-            "type" : "boolean"
-          },
-          "color" : {
-            "anyOf" : [ {
-              "type" : "string"
-            }, {
-              "type" : "integer",
-              "format" : "int32"
-            } ]
-          },
-          "font" : {
-            "type" : "string",
-            "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
-          },
-          "italic" : {
-            "type" : "boolean"
-          },
-          "obfuscated" : {
-            "type" : "boolean"
-          },
-          "strikethrough" : {
-            "type" : "boolean"
-          },
-          "text" : {
-            "type" : "string"
-          },
-          "underlined" : {
-            "type" : "boolean"
-          }
-        },
-        "required" : [ "text" ]
+        "$ref" : "#/$defs/Tooltip"
       }
     }
   },
