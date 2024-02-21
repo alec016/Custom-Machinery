@@ -1,0 +1,337 @@
+{
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "$id": "C:/Users/usuario/Desktop/CM 1.19.2 0.9.2/Json Schema/src/main/resources/schemas/machine.json",
+  "$defs" : {
+    "AppearanceBuilder" : {
+      "type" : "object",
+      "properties" : {
+        "ambient_sound" : {
+          "type" : "string",
+          "pattern" : "[A-z]+:[A-z]+"
+        },
+        "block" : {
+          "type" : "string",
+          "pattern" : "[A-z]+:[A-z]+"
+        },
+        "color" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "interaction_sound" : {
+          "type" : "string",
+          "pattern" : "[A-z]+:[A-z]+"
+        },
+        "item" : {
+          "type" : "string",
+          "pattern" : "[A-z]+:[A-z]+"
+        },
+        "light" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0,
+          "maximum" : 15
+        }
+      }
+    },
+    "Config" : {
+      "type" : "object",
+      "properties" : {
+        "back" : {
+          "$ref" : "#/$defs/SideMode"
+        },
+        "bottom" : {
+          "$ref" : "#/$defs/SideMode"
+        },
+        "enabled" : {
+          "type" : "boolean"
+        },
+        "front" : {
+          "$ref" : "#/$defs/SideMode"
+        },
+        "input" : {
+          "type" : "boolean"
+        },
+        "left" : {
+          "$ref" : "#/$defs/SideMode"
+        },
+        "output" : {
+          "type" : "boolean"
+        },
+        "right" : {
+          "$ref" : "#/$defs/SideMode"
+        },
+        "top" : {
+          "$ref" : "#/$defs/SideMode"
+        }
+      }
+    },
+    "Element" : {
+      "type" : "object"
+    },
+    "SideMode" : {
+      "type" : "string",
+      "enum" : [ "INPUT", "OUTPUT", "BOTH", "NONE" ]
+    }
+  },
+  "type" : "object",
+  "properties" : {
+    "appearance" : {
+      "type" : "object",
+      "properties" : {
+        "ambient_sound" : {
+          "type" : "string",
+          "pattern" : "[A-z]+:[A-z]+"
+        },
+        "block" : {
+          "type" : "string",
+          "pattern" : "[A-z]+:[A-z]+"
+        },
+        "color" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "errored" : {
+          "$ref" : "#/$defs/AppearanceBuilder"
+        },
+        "hardness" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "idle" : {
+          "$ref" : "#/$defs/AppearanceBuilder"
+        },
+        "interaction_sound" : {
+          "type" : "string",
+          "pattern" : "[A-z]+:[A-z]+"
+        },
+        "item" : {
+          "type" : "string",
+          "pattern" : "[A-z]+:[A-z]+"
+        },
+        "light" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0,
+          "maximum" : 15
+        },
+        "mining_level" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "pattern" : "[minecraft:needs_[stone|iron|diamond]|forge:needs_netherite]_tool"
+          }
+        },
+        "paused" : {
+          "$ref" : "#/$defs/AppearanceBuilder"
+        },
+        "requires_tool" : {
+          "type" : "boolean"
+        },
+        "resistance" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "running" : {
+          "$ref" : "#/$defs/AppearanceBuilder"
+        },
+        "shape" : {
+          "type" : "array"
+        },
+        "shape_collision" : {
+          "type" : "array"
+        },
+        "tool_type" : {
+          "type" : "string",
+          "pattern" : "minecraft:mineable/[shovel|pickaxe|axe|hoe]"
+        }
+      }
+    },
+    "catalysts" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string",
+        "pattern" : "[A-z]+:[A-z]+"
+      }
+    },
+    "components" : {
+      "type" : "array",
+      "items" : {
+        "anyOf" : [ {
+          "type" : "object",
+          "properties" : {
+            "radius" : {
+              "type" : "integer",
+              "format" : "int32",
+              "minimum" : 1,
+              "maximum" : 32
+            },
+            "type" : {
+              "const" : "custommachinery:chunkload"
+            }
+          },
+          "required" : [ "type" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "capacity" : {
+              "type" : "integer",
+              "format" : "int64",
+              "exclusiveMinimum" : 0
+            },
+            "config" : {
+              "$ref" : "#/$defs/Config"
+            },
+            "maxInput" : {
+              "type" : "integer",
+              "format" : "int64",
+              "exclusiveMinimum" : 0
+            },
+            "maxOutput" : {
+              "type" : "integer",
+              "format" : "int64",
+              "exclusiveMinimum" : 0
+            },
+            "type" : {
+              "const" : "custommachinery:energy"
+            }
+          },
+          "required" : [ "capacity", "type" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "capacity" : {
+              "type" : "integer",
+              "format" : "int32",
+              "exclusiveMinimum" : 0
+            },
+            "retrieve" : {
+              "type" : "boolean",
+              "exclusiveMinimum" : 0
+            },
+            "slots" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "type" : {
+              "const" : "custommachinery:experience"
+            }
+          },
+          "required" : [ "capacity", "type" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "capacity" : {
+              "type" : "integer",
+              "format" : "int64",
+              "exclusiveMinimum" : 0
+            },
+            "config" : {
+              "$ref" : "#/$defs/Config"
+            },
+            "filter" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string",
+                "pattern" : "[A-z]+:[A-z]+"
+              }
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "maxInput" : {
+              "type" : "integer",
+              "format" : "int64",
+              "exclusiveMinimum" : 0
+            },
+            "maxOutput" : {
+              "type" : "integer",
+              "format" : "int64",
+              "exclusiveMinimum" : 0
+            },
+            "mode" : {
+              "type" : "string",
+              "enum" : [ "INPUT", "OUTPUT", "BOTH", "NONE" ]
+            },
+            "unique" : {
+              "type" : "boolean"
+            },
+            "type" : {
+              "const" : "custommachinery:fluid"
+            }
+          },
+          "required" : [ "capacity", "id", "type" ]
+        } ]
+      }
+    },
+    "gui" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/$defs/Element"
+      }
+    },
+    "jei" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/$defs/Element"
+      }
+    },
+    "name" : {
+      "type" : "string"
+    },
+    "processor" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32",
+          "readOnly" : true
+        },
+        "cooldown" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "type" : {
+          "type" : "string",
+          "enum" : [ "MACHINE", "CRAFT" ]
+        }
+      },
+      "required" : [ "type" ]
+    },
+    "tooltips" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "bold" : {
+            "type" : "boolean"
+          },
+          "color" : {
+            "type" : "string"
+          },
+          "font" : {
+            "type" : "string"
+          },
+          "italic" : {
+            "type" : "boolean"
+          },
+          "obfuscated" : {
+            "type" : "boolean"
+          },
+          "strikethrough" : {
+            "type" : "boolean"
+          },
+          "underlined" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    }
+  },
+  "required" : [ "name" ],
+  "description": "CustomMachinery machine json schema definition",
+  "title": "CustomMachinery Machine"
+}
