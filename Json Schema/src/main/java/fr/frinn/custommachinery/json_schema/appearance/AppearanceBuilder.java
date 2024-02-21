@@ -14,12 +14,6 @@ public class AppearanceBuilder {
   @Pattern(regexp = Init.RL)
   private String item;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  @Pattern(regexp = Init.RL)
-  private String ambient_sound;
-  @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  @Pattern(regexp = Init.RL)
-  private String interaction_sound;
-  @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   @Min(0)
   @Max(15)
   private int light;

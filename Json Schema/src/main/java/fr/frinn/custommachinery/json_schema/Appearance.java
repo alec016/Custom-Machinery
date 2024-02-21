@@ -18,28 +18,31 @@ public class Appearance extends AppearanceBuilder {
   @Min(0)
   private int resistance;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  @Pattern(regexp = TT)
-  @JsonSubTypes({ @JsonSubTypes.Type(String.class) })
   private List<
     @Pattern(regexp = TT)
     String
   > tool_type;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   @Pattern(regexp = ML)
-  @JsonSubTypes({ @JsonSubTypes.Type(String.class) })
   private String mining_level;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   private boolean requires_tool;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  @JsonSubTypes(
-    @JsonSubTypes.Type(int[][].class)
-  )
+  @JsonSubTypes(@JsonSubTypes.Type(int[][].class))
   private String shape;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  @JsonSubTypes(
-    @JsonSubTypes.Type(int[][].class)
-  )
+  @JsonSubTypes(@JsonSubTypes.Type(int[][].class))
   private String shape_collision;
+  @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+  @Pattern(regexp = Init.RL)
+  private String ambient_sound;
+  @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+  @Pattern(regexp = Init.RL)
+  @JsonSubTypes({
+    @JsonSubTypes.Type(InteractionSound.class),
+    @JsonSubTypes.Type(String.class)
+  })
+  private String interaction_sound;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   private AppearanceBuilder idle;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
@@ -49,35 +52,15 @@ public class Appearance extends AppearanceBuilder {
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   private AppearanceBuilder paused;
 
-  public void setIdle(AppearanceBuilder builder) {
-    this.idle = builder;
-  }
-
-  public AppearanceBuilder getIdle() {
-    return this.idle;
-  }
-
-  public void setRunning(AppearanceBuilder builder) {
-    this.running = builder;
-  }
-
-  public AppearanceBuilder getRunning() {
-    return this.running;
-  }
-
-  public void setErrored(AppearanceBuilder builder) {
-    this.errored = builder;
-  }
-
-  public AppearanceBuilder getErrored() {
-    return this.errored;
-  }
-
-  public void setPaused(AppearanceBuilder builder) {
-    this.paused = builder;
-  }
-
-  public AppearanceBuilder getPaused() {
-    return this.paused;
+  private static class InteractionSound {
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @Pattern(regexp = Init.RL)
+    private String place;
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @Pattern(regexp = Init.RL)
+    private String breeak;
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @Pattern(regexp = Init.RL)
+    private String step;
   }
 }

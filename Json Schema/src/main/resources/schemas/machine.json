@@ -1,14 +1,9 @@
 {
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/machine.json",
   "$defs" : {
     "AppearanceBuilder" : {
       "type" : "object",
       "properties" : {
-        "ambient_sound" : {
-          "type" : "string",
-          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
-        },
         "block" : {
           "type" : "string",
           "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
@@ -16,10 +11,6 @@
         "color" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "interaction_sound" : {
-          "type" : "string",
-          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
         },
         "item" : {
           "type" : "string",
@@ -315,7 +306,7 @@
       "properties" : {
         "ambient_sound" : {
           "type" : "string",
-          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
         },
         "block" : {
           "type" : "string",
@@ -337,8 +328,26 @@
           "$ref" : "#/$defs/AppearanceBuilder"
         },
         "interaction_sound" : {
-          "type" : "string",
-          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
+          "anyOf" : [ {
+            "type" : "object",
+            "properties" : {
+              "break" : {
+                "type" : "string",
+                "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+              },
+              "place" : {
+                "type" : "string",
+                "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+              },
+              "step" : {
+                "type" : "string",
+                "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+              }
+            }
+          }, {
+            "type" : "string",
+            "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+          } ]
         },
         "item" : {
           "type" : "string",
@@ -375,8 +384,11 @@
           "type" : "array"
         },
         "tool_type" : {
-          "type" : "string",
-          "pattern" : "minecraft:mineable/[shovel|pickaxe|axe|hoe]"
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "pattern" : "minecraft:mineable/[shovel|pickaxe|axe|hoe]"
+          }
         }
       }
     },
@@ -384,7 +396,7 @@
       "type" : "array",
       "items" : {
         "type" : "string",
-        "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/]*[a-z]$"
+        "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
       }
     },
     "components" : {
@@ -460,7 +472,21 @@
       }
     },
     "name" : {
-      "type" : "string"
+      "anyOf" : [ {
+        "type" : "object",
+        "properties" : {
+          "color" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "text" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "text" ]
+      }, {
+        "type" : "string"
+      } ]
     },
     "processor" : {
       "type" : "object",
@@ -513,7 +539,5 @@
       }
     }
   },
-  "required" : [ "name" ],
-  "description": "CustomMachinery machine json schema definition",
-  "title": "CustomMachinery Machine"
+  "required" : [ "name" ]
 }
