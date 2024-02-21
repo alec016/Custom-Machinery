@@ -101,7 +101,7 @@
           "anyOf" : [ {
             "type" : "object",
             "properties" : {
-              "breeak" : {
+              "break" : {
                 "type" : "string",
                 "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
               },
