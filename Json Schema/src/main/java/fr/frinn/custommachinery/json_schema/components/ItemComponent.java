@@ -1,6 +1,5 @@
 package fr.frinn.custommachinery.json_schema.components;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -37,28 +36,6 @@ public class ItemComponent extends Component {
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   private boolean locked;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  private Variant variant;
-
-  @JsonSubTypes({
-    @JsonSubTypes.Type(value = Default.class, name = "custommachinery:default"),
-    @JsonSubTypes.Type(value = Energy.class, name = "custommachinery:energy"),
-    @JsonSubTypes.Type(value = Filter.class, name = "custommachinery:filter"),
-    @JsonSubTypes.Type(value = Fluid.class, name = "custommachinery:fluid"),
-    @JsonSubTypes.Type(value = Fuel.class, name = "custommachinery:fuel"),
-    @JsonSubTypes.Type(value = Result.class, name = "custommachinery:result"),
-    @JsonSubTypes.Type(value = Upgrade.class, name = "custommachinery:upgrade")
-  })
-  @JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.EXISTING_PROPERTY,
-    property = "type"
-  )
-  private static class Variant {}
-  private static class Default extends Variant {}
-  private static class Energy extends Variant {}
-  private static class Filter extends Variant {}
-  private static class Fluid extends Variant {}
-  private static class Fuel extends Variant {}
-  private static class Result extends Variant {}
-  private static class Upgrade extends Variant {}
+  @Pattern(regexp = "custommachinery:[energy|filter|fluid|fuel|result|upgrade]")
+  private String variant;
 }

@@ -205,63 +205,8 @@
           "$ref" : "#/$defs/ComponentIOMode"
         },
         "variant" : {
-          "anyOf" : [ {
-            "type" : "object",
-            "properties" : {
-              "type" : {
-                "const" : "custommachinery:default"
-              }
-            },
-            "required" : [ "type" ]
-          }, {
-            "type" : "object",
-            "properties" : {
-              "type" : {
-                "const" : "custommachinery:energy"
-              }
-            },
-            "required" : [ "type" ]
-          }, {
-            "type" : "object",
-            "properties" : {
-              "type" : {
-                "const" : "custommachinery:filter"
-              }
-            },
-            "required" : [ "type" ]
-          }, {
-            "type" : "object",
-            "properties" : {
-              "type" : {
-                "const" : "custommachinery:fluid"
-              }
-            },
-            "required" : [ "type" ]
-          }, {
-            "type" : "object",
-            "properties" : {
-              "type" : {
-                "const" : "custommachinery:fuel"
-              }
-            },
-            "required" : [ "type" ]
-          }, {
-            "type" : "object",
-            "properties" : {
-              "type" : {
-                "const" : "custommachinery:result"
-              }
-            },
-            "required" : [ "type" ]
-          }, {
-            "type" : "object",
-            "properties" : {
-              "type" : {
-                "const" : "custommachinery:upgrade"
-              }
-            },
-            "required" : [ "type" ]
-          } ]
+          "type" : "string",
+          "pattern" : "custommachinery:[energy|filter|fluid|fuel|result|upgrade]"
         },
         "whitelist" : {
           "type" : "boolean"
