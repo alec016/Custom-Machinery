@@ -18,12 +18,4 @@ import java.util.List;
   property = "type"
 )
 public class Component {
-  @JsonIgnore
-  static List<Component> components = new ArrayList<>();
-
-  public static List<Component> create() {
-    if (!components.isEmpty()) return components;
-    components.add(new ChunkLoadComponent());
-    return components;
-  }
 }

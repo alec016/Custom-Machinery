@@ -19,25 +19,25 @@ public class Machine {
   @JsonProperty(access = JsonProperty.Access.READ_WRITE, required = true)
   private String name;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  private Appearance appearance = Appearance.DEFAULT;
+  private Appearance appearance;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  private List<Tooltip> tooltips = new ArrayList<>();
+  private List<Tooltip> tooltips;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  private List<Element> gui = Element.create();
+  private List<Element> gui;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  private List<Element> jei = Element.create();
+  private List<Element> jei;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   @JsonFormat(
     shape = JsonFormat.Shape.ARRAY
   )
-  private List<Component> components = Component.create();
+  private List<Component> components;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  private Processor processor = Processor.DEFAULT;
+  private Processor processor;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   private List<
     @Pattern(regexp = Init.RL)
     String
-  > catalysts = new ArrayList<>();
+  > catalysts;
 
   public void setName(String name) {
     this.name = name;

@@ -11,8 +11,6 @@ import java.util.List;
 public class Appearance extends AppearanceBuilder {
   private static final String TT = "minecraft:mineable/[shovel|pickaxe|axe|hoe]";
   private static final String ML = "[minecraft:needs_[stone|iron|diamond]|forge:needs_netherite]_tool";
-  @JsonIgnore
-  public static final Appearance DEFAULT = new Appearance();
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   @Min(0)
   private int hardness;
@@ -29,10 +27,7 @@ public class Appearance extends AppearanceBuilder {
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   @Pattern(regexp = ML)
   @JsonSubTypes({ @JsonSubTypes.Type(String.class) })
-  private List<
-    @Pattern(regexp = ML)
-    String
-  > mining_level;
+  private String mining_level;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   private boolean requires_tool;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
@@ -46,13 +41,13 @@ public class Appearance extends AppearanceBuilder {
   )
   private String shape_collision;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  private AppearanceBuilder idle = AppearanceBuilder.DEFAULT;
+  private AppearanceBuilder idle;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  private AppearanceBuilder running = AppearanceBuilder.DEFAULT;
+  private AppearanceBuilder running;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  private AppearanceBuilder errored = AppearanceBuilder.DEFAULT;
+  private AppearanceBuilder errored;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  private AppearanceBuilder paused = AppearanceBuilder.DEFAULT;
+  private AppearanceBuilder paused;
 
   public void setIdle(AppearanceBuilder builder) {
     this.idle = builder;
