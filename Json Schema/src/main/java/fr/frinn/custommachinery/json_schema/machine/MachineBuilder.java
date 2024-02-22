@@ -14,9 +14,10 @@ public class MachineBuilder {
   private Appearance appearance;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   @JsonSubTypes({
-    @JsonSubTypes.Type(Tooltip.class)
+    @JsonSubTypes.Type(Tooltip.class),
+    @JsonSubTypes.Type(Tooltip[].class)
   })
-  private List<Tooltip> tooltips;
+  private Tooltip tooltips;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   private List<Element> gui;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)

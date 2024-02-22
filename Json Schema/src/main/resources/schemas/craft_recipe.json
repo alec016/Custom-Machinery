@@ -1,0 +1,7 @@
+{
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/craft_recipe.json",
+  "type" : "object",
+  "description": "CustomMachinery Craft recipe json schema definition",
+  "title": "CustomMachinery Craft Recipe"
+}

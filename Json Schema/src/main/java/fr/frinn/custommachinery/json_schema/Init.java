@@ -12,7 +12,8 @@ import com.github.victools.jsonschema.module.jakarta.validation.JakartaValidatio
 import com.github.victools.jsonschema.module.jakarta.validation.JakartaValidationOption;
 import fr.frinn.custommachinery.json_schema.machine.Machine;
 import fr.frinn.custommachinery.json_schema.machine.UpgradedMachine;
-import fr.frinn.custommachinery.json_schema.recipe.Recipe;
+import fr.frinn.custommachinery.json_schema.recipe.CraftRecipe;
+import fr.frinn.custommachinery.json_schema.recipe.MachineRecipe;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -34,7 +35,8 @@ public class Init {
     SchemaGenerator generator = new SchemaGenerator(configBuilder.build());
     JsonNode machineSchema = generator.generateSchema(Machine.class);
     JsonNode upgradedMachineSchema = generator.generateSchema(UpgradedMachine.class);
-    JsonNode recipeSchema = generator.generateSchema(Recipe.class);
+    JsonNode craftRecipeSchema = generator.generateSchema(CraftRecipe.class);
+    JsonNode machineRecipeSchema = generator.generateSchema(MachineRecipe.class);
     try {
       String schemaDir = System.getProperty("user.dir") + "/Json Schema/src/main/resources/schemas/";
       File dir = new File(schemaDir);
@@ -53,10 +55,16 @@ public class Init {
       writer.write(upgradedMachineSchema.toPrettyString());
       writer.flush();
 
-      System.out.println("===================== Recipe =====================");
-      System.out.println(recipeSchema.toPrettyString());
-      writer = new BufferedWriter(new FileWriter(schemaDir + "recipe.json"));
-      writer.write(recipeSchema.toPrettyString());
+      System.out.println("===================== Craft Recipe =====================");
+      System.out.println(craftRecipeSchema.toPrettyString());
+      writer = new BufferedWriter(new FileWriter(schemaDir + "craft_recipe.json"));
+      writer.write(craftRecipeSchema.toPrettyString());
+      writer.flush();
+
+      System.out.println("===================== Craft Recipe =====================");
+      System.out.println(craftRecipeSchema.toPrettyString());
+      writer = new BufferedWriter(new FileWriter(schemaDir + "machine_recipe.json"));
+      writer.write(craftRecipeSchema.toPrettyString());
       writer.flush();
     } catch (Exception e) {
       System.out.println(e + "");
