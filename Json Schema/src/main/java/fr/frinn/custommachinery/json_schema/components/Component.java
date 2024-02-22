@@ -29,5 +29,5 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
   include = JsonTypeInfo.As.EXISTING_PROPERTY,
   property = "type"
 )
-public class Component {
+public abstract class Component {
 }

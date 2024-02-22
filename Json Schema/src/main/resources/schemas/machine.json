@@ -25,6 +25,170 @@
         }
       }
     },
+    "BarElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "highlight" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "max" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "min" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "orientation" : {
+          "type" : "string",
+          "enum" : [ "RIGHT", "LEFT", "TOP", "BOTTOM" ]
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "texture_empty" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "texture_filled" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:bar"
+        }
+      },
+      "required" : [ "id", "x", "y", "type" ]
+    },
+    "ButtonElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "hold_time" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 1
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "item" : {
+          "anyOf" : [ {
+            "type" : "string",
+            "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+          }, {
+            "type" : "object",
+            "properties" : {
+              "Count" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "tag" : {
+                "type" : "string",
+                "pattern" : "#?[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+              }
+            },
+            "required" : [ "id" ]
+          } ]
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "text" : {
+          "$ref" : "#/$defs/Tooltip"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "texture_toggle" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "texture_toggle_hovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "toggle" : {
+          "type" : "boolean"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:button"
+        }
+      },
+      "required" : [ "id", "x", "y", "type" ]
+    },
     "ComponentIOMode" : {
       "type" : "string",
       "enum" : [ "INPUT", "OUTPUT", "BOTH", "NONE" ]
@@ -60,9 +224,6 @@
           "$ref" : "#/$defs/SideMode"
         }
       }
-    },
-    "Element" : {
-      "type" : "object"
     },
     "SideMode" : {
       "type" : "string",
@@ -674,13 +835,21 @@
     "gui" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/$defs/Element"
+        "anyOf" : [ {
+          "$ref" : "#/$defs/BarElement"
+        }, {
+          "$ref" : "#/$defs/ButtonElement"
+        } ]
       }
     },
     "jei" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/$defs/Element"
+        "anyOf" : [ {
+          "$ref" : "#/$defs/BarElement"
+        }, {
+          "$ref" : "#/$defs/ButtonElement"
+        } ]
       }
     },
     "name" : {
