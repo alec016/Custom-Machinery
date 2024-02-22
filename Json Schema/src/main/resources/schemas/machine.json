@@ -48,8 +48,7 @@
           "format" : "int32"
         },
         "orientation" : {
-          "type" : "string",
-          "enum" : [ "RIGHT", "LEFT", "TOP", "BOTTOM", "right", "left", "top", "bottom" ]
+          "$ref" : "#/$defs/Orientation"
         },
         "priority" : {
           "type" : "integer",
@@ -442,9 +441,883 @@
       },
       "required" : [ "x", "y", "type" ]
     },
+    "FluidElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "highlight" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:fluid"
+        }
+      },
+      "required" : [ "id", "x", "y", "type" ]
+    },
+    "FuelElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "texture_empty" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "texture_filled" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:fuel"
+        }
+      },
+      "required" : [ "x", "y", "type" ]
+    },
+    "GasElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "highlight" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:gas"
+        }
+      },
+      "required" : [ "id", "x", "y", "type" ]
+    },
+    "HeatElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "highlight" : {
+          "type" : "boolean"
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:heat"
+        }
+      },
+      "required" : [ "x", "y", "type" ]
+    },
+    "InfusionElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "highlight" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:infusion"
+        }
+      },
+      "required" : [ "id", "x", "y", "type" ]
+    },
+    "ManaElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "highlight" : {
+          "type" : "boolean"
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:mana"
+        }
+      },
+      "required" : [ "x", "y", "type" ]
+    },
+    "Orientation" : {
+      "type" : "string",
+      "enum" : [ "RIGHT", "LEFT", "TOP", "BOTTOM", "right", "left", "top", "bottom" ]
+    },
+    "PigmentElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "highlight" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:pigment"
+        }
+      },
+      "required" : [ "id", "x", "y", "type" ]
+    },
+    "PlayerInventoryElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:player_inventory"
+        }
+      },
+      "required" : [ "x", "y", "type" ]
+    },
+    "ProgressBarElement" : {
+      "type" : "object",
+      "properties" : {
+        "direction" : {
+          "$ref" : "#/$defs/Orientation"
+        },
+        "end" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "start" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "texture_empty" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "texture_filled" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:progress"
+        }
+      },
+      "required" : [ "x", "y", "type" ]
+    },
+    "ResetElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:reset"
+        }
+      },
+      "required" : [ "x", "y", "type" ]
+    },
     "SideMode" : {
       "type" : "string",
       "enum" : [ "INPUT", "OUTPUT", "BOTH", "NONE", "input", "output", "both", "none" ]
+    },
+    "SizeElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 1,
+          "maximum" : 2160
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 1,
+          "maximum" : 3840
+        }
+      }
+    },
+    "SlotElement" : {
+      "type" : "object",
+      "properties" : {
+        "ghost" : {
+          "type" : "object"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:slot"
+        }
+      },
+      "required" : [ "id", "x", "y", "type" ]
+    },
+    "SlurryElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "highlight" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:slurry"
+        }
+      },
+      "required" : [ "id", "x", "y", "type" ]
+    },
+    "SourceElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "highlight" : {
+          "type" : "boolean"
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:source"
+        }
+      },
+      "required" : [ "x", "y", "type" ]
+    },
+    "StatusElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "texture_errored" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "texture_idle" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "texture_running" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:status"
+        }
+      },
+      "required" : [ "x", "y", "type" ]
+    },
+    "TextElement" : {
+      "type" : "object",
+      "properties" : {
+        "alignment" : {
+          "type" : "string",
+          "enum" : [ "LEFT", "left", "CENTER", "center", "RIGHT", "right" ]
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "jei" : {
+          "type" : "boolean"
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "text" : {
+          "anyOf" : [ {
+            "$ref" : "#/$defs/Tooltip"
+          }, {
+            "type" : "string"
+          } ]
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:text"
+        }
+      },
+      "required" : [ "text", "x", "y", "type" ]
+    },
+    "TextureElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "jei" : {
+          "type" : "boolean"
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:texture"
+        }
+      },
+      "required" : [ "x", "y", "type" ]
     },
     "Tooltip" : {
       "type" : "object",
@@ -1064,6 +1937,40 @@
           "$ref" : "#/$defs/EnergyElement"
         }, {
           "$ref" : "#/$defs/ExperienceElement"
+        }, {
+          "$ref" : "#/$defs/FluidElement"
+        }, {
+          "$ref" : "#/$defs/FuelElement"
+        }, {
+          "$ref" : "#/$defs/PlayerInventoryElement"
+        }, {
+          "$ref" : "#/$defs/ProgressBarElement"
+        }, {
+          "$ref" : "#/$defs/ResetElement"
+        }, {
+          "$ref" : "#/$defs/SizeElement"
+        }, {
+          "$ref" : "#/$defs/SlotElement"
+        }, {
+          "$ref" : "#/$defs/StatusElement"
+        }, {
+          "$ref" : "#/$defs/TextElement"
+        }, {
+          "$ref" : "#/$defs/TextureElement"
+        }, {
+          "$ref" : "#/$defs/ManaElement"
+        }, {
+          "$ref" : "#/$defs/SourceElement"
+        }, {
+          "$ref" : "#/$defs/GasElement"
+        }, {
+          "$ref" : "#/$defs/InfusionElement"
+        }, {
+          "$ref" : "#/$defs/PigmentElement"
+        }, {
+          "$ref" : "#/$defs/SlurryElement"
+        }, {
+          "$ref" : "#/$defs/HeatElement"
         } ]
       }
     },
@@ -1082,6 +1989,40 @@
           "$ref" : "#/$defs/EnergyElement"
         }, {
           "$ref" : "#/$defs/ExperienceElement"
+        }, {
+          "$ref" : "#/$defs/FluidElement"
+        }, {
+          "$ref" : "#/$defs/FuelElement"
+        }, {
+          "$ref" : "#/$defs/PlayerInventoryElement"
+        }, {
+          "$ref" : "#/$defs/ProgressBarElement"
+        }, {
+          "$ref" : "#/$defs/ResetElement"
+        }, {
+          "$ref" : "#/$defs/SizeElement"
+        }, {
+          "$ref" : "#/$defs/SlotElement"
+        }, {
+          "$ref" : "#/$defs/StatusElement"
+        }, {
+          "$ref" : "#/$defs/TextElement"
+        }, {
+          "$ref" : "#/$defs/TextureElement"
+        }, {
+          "$ref" : "#/$defs/ManaElement"
+        }, {
+          "$ref" : "#/$defs/SourceElement"
+        }, {
+          "$ref" : "#/$defs/GasElement"
+        }, {
+          "$ref" : "#/$defs/InfusionElement"
+        }, {
+          "$ref" : "#/$defs/PigmentElement"
+        }, {
+          "$ref" : "#/$defs/SlurryElement"
+        }, {
+          "$ref" : "#/$defs/HeatElement"
         } ]
       }
     },
