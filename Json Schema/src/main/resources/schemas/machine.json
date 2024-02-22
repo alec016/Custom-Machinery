@@ -368,7 +368,7 @@
             },
             "variant" : {
               "type" : "string",
-              "pattern" : "custommachinery:[energy|filter|fluid|fuel|result|upgrade]"
+              "pattern" : "custommachinery:[energy|filter|fluid|fuel|result|upgrade|mana|source]"
             },
             "whitelist" : {
               "type" : "boolean"
@@ -414,6 +414,257 @@
             },
             "type" : {
               "const" : "custommachinery:redstone"
+            }
+          },
+          "required" : [ "type" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "capacity" : {
+              "type" : "integer",
+              "format" : "int32",
+              "exclusiveMinimum" : 0
+            },
+            "maxInput" : {
+              "type" : "integer",
+              "format" : "int32",
+              "exclusiveMinimum" : 0
+            },
+            "maxOutput" : {
+              "type" : "integer",
+              "format" : "int32",
+              "exclusiveMinimum" : 0
+            },
+            "mode" : {
+              "$ref" : "#/$defs/ComponentIOMode"
+            },
+            "type" : {
+              "const" : "custommachinery:mana"
+            }
+          },
+          "required" : [ "capacity", "type" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "capacity" : {
+              "type" : "integer",
+              "format" : "int32",
+              "exclusiveMinimum" : 0
+            },
+            "maxInput" : {
+              "type" : "integer",
+              "format" : "int32",
+              "exclusiveMinimum" : 0
+            },
+            "maxOutput" : {
+              "type" : "integer",
+              "format" : "int32",
+              "exclusiveMinimum" : 0
+            },
+            "mode" : {
+              "$ref" : "#/$defs/ComponentIOMode"
+            },
+            "type" : {
+              "const" : "custommachinery:source"
+            }
+          },
+          "required" : [ "capacity", "type" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "capacity" : {
+              "type" : "integer",
+              "format" : "int64"
+            },
+            "config" : {
+              "$ref" : "#/$defs/Config"
+            },
+            "filter" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string",
+                "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+              }
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "max_input" : {
+              "type" : "integer",
+              "format" : "int64"
+            },
+            "max_output" : {
+              "type" : "integer",
+              "format" : "int64"
+            },
+            "mode" : {
+              "$ref" : "#/$defs/ComponentIOMode"
+            },
+            "whitelist" : {
+              "type" : "boolean"
+            },
+            "type" : {
+              "const" : "custommachinery:gas"
+            }
+          },
+          "required" : [ "capacity", "id", "type" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "capacity" : {
+              "type" : "integer",
+              "format" : "int64"
+            },
+            "config" : {
+              "$ref" : "#/$defs/Config"
+            },
+            "filter" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string",
+                "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+              }
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "max_input" : {
+              "type" : "integer",
+              "format" : "int64"
+            },
+            "max_output" : {
+              "type" : "integer",
+              "format" : "int64"
+            },
+            "mode" : {
+              "$ref" : "#/$defs/ComponentIOMode"
+            },
+            "whitelist" : {
+              "type" : "boolean"
+            },
+            "type" : {
+              "const" : "custommachinery:infusion"
+            }
+          },
+          "required" : [ "capacity", "id", "type" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "capacity" : {
+              "type" : "integer",
+              "format" : "int64"
+            },
+            "config" : {
+              "$ref" : "#/$defs/Config"
+            },
+            "filter" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string",
+                "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+              }
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "max_input" : {
+              "type" : "integer",
+              "format" : "int64"
+            },
+            "max_output" : {
+              "type" : "integer",
+              "format" : "int64"
+            },
+            "mode" : {
+              "$ref" : "#/$defs/ComponentIOMode"
+            },
+            "whitelist" : {
+              "type" : "boolean"
+            },
+            "type" : {
+              "const" : "custommachinery:pigment"
+            }
+          },
+          "required" : [ "capacity", "id", "type" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "capacity" : {
+              "type" : "integer",
+              "format" : "int64"
+            },
+            "config" : {
+              "$ref" : "#/$defs/Config"
+            },
+            "filter" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string",
+                "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+              }
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "max_input" : {
+              "type" : "integer",
+              "format" : "int64"
+            },
+            "max_output" : {
+              "type" : "integer",
+              "format" : "int64"
+            },
+            "mode" : {
+              "$ref" : "#/$defs/ComponentIOMode"
+            },
+            "whitelist" : {
+              "type" : "boolean"
+            },
+            "type" : {
+              "const" : "custommachinery:slurry"
+            }
+          },
+          "required" : [ "capacity", "id", "type" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "base_temp" : {
+              "type" : "number",
+              "format" : "double"
+            },
+            "capacity" : {
+              "type" : "number",
+              "format" : "double"
+            },
+            "conduction" : {
+              "type" : "number",
+              "format" : "double"
+            },
+            "config" : {
+              "$ref" : "#/$defs/Config"
+            },
+            "insulation" : {
+              "type" : "number",
+              "format" : "double"
+            },
+            "type" : {
+              "const" : "custommachinery:heat"
+            }
+          },
+          "required" : [ "type" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "config" : {
+              "$ref" : "#/$defs/Config"
+            },
+            "stress_impact" : {
+              "type" : "number",
+              "format" : "float",
+              "minimum" : 0
+            },
+            "type" : {
+              "const" : "custommachinery:contraption"
             }
           },
           "required" : [ "type" ]
@@ -465,12 +716,7 @@
       }, {
         "type" : "array",
         "items" : {
-          "anyOf" : [ {
-            "$ref" : "#/$defs/Tooltip"
-          }, {
-            "type" : "array",
-            "items" : { }
-          } ]
+          "$ref" : "#/$defs/Tooltip"
         }
       } ]
     }
