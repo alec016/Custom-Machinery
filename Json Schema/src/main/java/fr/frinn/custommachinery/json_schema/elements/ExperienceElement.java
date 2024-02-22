@@ -16,9 +16,20 @@ public class ExperienceElement extends Element {
     OUTPUT_TEN,
     OUTPUT_ALL,
     DISPLAY,
-    DISPLAY_BAR
+    DISPLAY_BAR,
+    input_one,
+    input_ten,
+    input_all,
+    output_one,
+    output_ten,
+    output_all,
+    display,
+    display_bar
   }
   private enum DisplayMode {
-    LITERAL, LEVEL, BOTH
+    LITERAL, LEVEL, BOTH,
+    literal,
+    level,
+    both
   }
 }

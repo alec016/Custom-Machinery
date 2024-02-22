@@ -15,7 +15,7 @@ import java.io.File;
 import java.io.FileWriter;
 
 public class Init {
-  public static final String RL = "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$";
+  public static final String RL = "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$";
 
   public static void main (String[] args) {
     JacksonModule jacksonModule = new JacksonModule(JacksonOption.RESPECT_JSONPROPERTY_REQUIRED);

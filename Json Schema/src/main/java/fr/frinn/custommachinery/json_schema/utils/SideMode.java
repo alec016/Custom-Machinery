@@ -4,5 +4,9 @@ public enum SideMode {
   INPUT,
   OUTPUT,
   BOTH,
-  NONE;
+  NONE,
+  input,
+  output,
+  both,
+  none;
 }
