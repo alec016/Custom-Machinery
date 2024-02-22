@@ -225,6 +225,223 @@
         }
       }
     },
+    "ConfigElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:config"
+        }
+      },
+      "required" : [ "x", "y", "type" ]
+    },
+    "DumpElement" : {
+      "type" : "object",
+      "properties" : {
+        "component" : {
+          "type" : "string",
+          "pattern" : "custommachinery:[item|fluid|source|mana]"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "id" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:dump"
+        }
+      },
+      "required" : [ "id", "x", "y", "type" ]
+    },
+    "EnergyElement" : {
+      "type" : "object",
+      "properties" : {
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "highlight" : {
+          "type" : "boolean"
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "texture_empty" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "texture_filled" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:energy"
+        }
+      },
+      "required" : [ "x", "y", "type" ]
+    },
+    "ExperienceElement" : {
+      "type" : "object",
+      "properties" : {
+        "display" : {
+          "type" : "string",
+          "enum" : [ "LITERAL", "LEVEL", "BOTH" ]
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "mode" : {
+          "type" : "string",
+          "enum" : [ "INPUT_ONE", "INPUT_TEN", "INPUT_ALL", "OUTPUT_ONE", "OUTPUT_TEN", "OUTPUT_ALL", "DISPLAY", "DISPLAY_BAR" ]
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "texture" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "textureHovered" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$"
+        },
+        "tooltips" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/Tooltip"
+          }
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1
+        },
+        "x" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "type" : {
+          "const" : "custommachinery:experience"
+        }
+      },
+      "required" : [ "x", "y", "type" ]
+    },
     "SideMode" : {
       "type" : "string",
       "enum" : [ "INPUT", "OUTPUT", "BOTH", "NONE" ]
@@ -839,6 +1056,14 @@
           "$ref" : "#/$defs/BarElement"
         }, {
           "$ref" : "#/$defs/ButtonElement"
+        }, {
+          "$ref" : "#/$defs/ConfigElement"
+        }, {
+          "$ref" : "#/$defs/DumpElement"
+        }, {
+          "$ref" : "#/$defs/EnergyElement"
+        }, {
+          "$ref" : "#/$defs/ExperienceElement"
         } ]
       }
     },
@@ -849,6 +1074,14 @@
           "$ref" : "#/$defs/BarElement"
         }, {
           "$ref" : "#/$defs/ButtonElement"
+        }, {
+          "$ref" : "#/$defs/ConfigElement"
+        }, {
+          "$ref" : "#/$defs/DumpElement"
+        }, {
+          "$ref" : "#/$defs/EnergyElement"
+        }, {
+          "$ref" : "#/$defs/ExperienceElement"
         } ]
       }
     },

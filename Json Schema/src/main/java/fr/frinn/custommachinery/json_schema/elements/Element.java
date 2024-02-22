@@ -11,7 +11,11 @@ import java.util.List;
 
 @JsonSubTypes({
   @JsonSubTypes.Type(value = BarElement.class, name = "custommachinery:bar"),
-  @JsonSubTypes.Type(value = ButtonElement.class, name = "custommachinery:button")
+  @JsonSubTypes.Type(value = ButtonElement.class, name = "custommachinery:button"),
+  @JsonSubTypes.Type(value = ConfigElement.class, name = "custommachinery:config"),
+  @JsonSubTypes.Type(value = DumpElement.class, name = "custommachinery:dump"),
+  @JsonSubTypes.Type(value = EnergyElement.class, name = "custommachinery:energy"),
+  @JsonSubTypes.Type(value = ExperienceElement.class, name = "custommachinery:experience"),
 })
 @JsonTypeInfo(
   use = JsonTypeInfo.Id.NAME,
