@@ -10,12 +10,15 @@ import com.github.victools.jsonschema.module.jackson.JacksonModule;
 import com.github.victools.jsonschema.module.jackson.JacksonOption;
 import com.github.victools.jsonschema.module.jakarta.validation.JakartaValidationModule;
 import com.github.victools.jsonschema.module.jakarta.validation.JakartaValidationOption;
+import fr.frinn.custommachinery.json_schema.machine.Machine;
+import fr.frinn.custommachinery.json_schema.machine.UpgradedMachine;
+import fr.frinn.custommachinery.json_schema.recipe.Recipe;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 
 public class Init {
-  public static final String RL = "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=]*[a-z]$";
+  public static final String RL = "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$";
 
   public static void main (String[] args) {
     JacksonModule jacksonModule = new JacksonModule(JacksonOption.RESPECT_JSONPROPERTY_REQUIRED);
@@ -31,6 +34,7 @@ public class Init {
     SchemaGenerator generator = new SchemaGenerator(configBuilder.build());
     JsonNode machineSchema = generator.generateSchema(Machine.class);
     JsonNode upgradedMachineSchema = generator.generateSchema(UpgradedMachine.class);
+    JsonNode recipeSchema = generator.generateSchema(Recipe.class);
     try {
       String schemaDir = System.getProperty("user.dir") + "/Json Schema/src/main/resources/schemas/";
       File dir = new File(schemaDir);
@@ -49,6 +53,11 @@ public class Init {
       writer.write(upgradedMachineSchema.toPrettyString());
       writer.flush();
 
+      System.out.println("===================== Machine =====================");
+      System.out.println(recipeSchema.toPrettyString());
+      writer = new BufferedWriter(new FileWriter(schemaDir + "recipe.json"));
+      writer.write(recipeSchema.toPrettyString());
+      writer.flush();
     } catch (Exception e) {
       System.out.println(e + "");
     }
