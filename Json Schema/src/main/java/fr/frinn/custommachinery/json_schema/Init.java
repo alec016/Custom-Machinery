@@ -53,7 +53,7 @@ public class Init {
       writer.write(upgradedMachineSchema.toPrettyString());
       writer.flush();
 
-      System.out.println("===================== Machine =====================");
+      System.out.println("===================== Recipe =====================");
       System.out.println(recipeSchema.toPrettyString());
       writer = new BufferedWriter(new FileWriter(schemaDir + "recipe.json"));
       writer.write(recipeSchema.toPrettyString());
