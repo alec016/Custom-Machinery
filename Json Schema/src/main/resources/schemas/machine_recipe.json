@@ -60,8 +60,7 @@
           }
         },
         "mode" : {
-          "type" : "string",
-          "enum" : [ "INPUT", "input", "OUTPUT", "output" ]
+          "$ref" : "#/$defs/RequirementIOMode"
         },
         "pos" : {
           "type" : "array",
@@ -143,6 +142,106 @@
         }
       },
       "required" : [ "command", "phase", "type" ]
+    },
+    "DimensionRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "blacklist" : {
+          "type" : "boolean"
+        },
+        "filter" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+          }
+        },
+        "type" : {
+          "const" : "custommachinery:dimension"
+        }
+      },
+      "required" : [ "type" ]
+    },
+    "DropRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "action" : {
+          "type" : "string",
+          "enum" : [ "check", "consume", "produce" ]
+        },
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 1
+        },
+        "chance" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "delay" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "input" : {
+          "type" : "array",
+          "items" : {
+            "anyOf" : [ {
+              "type" : "object",
+              "properties" : {
+                "item" : {
+                  "type" : "string",
+                  "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+                }
+              },
+              "required" : [ "item" ]
+            }, {
+              "type" : "object",
+              "properties" : {
+                "tag" : {
+                  "type" : "string",
+                  "pattern" : "#?[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+                }
+              },
+              "required" : [ "tag" ]
+            }, {
+              "type" : "string",
+              "pattern" : "#?[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+            } ]
+          }
+        },
+        "mode" : {
+          "$ref" : "#/$defs/RequirementIOMode"
+        },
+        "nbt" : {
+          "anyOf" : [ {
+            "type" : "string"
+          }, { } ]
+        },
+        "output" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "radius" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 1
+        },
+        "whitelist" : {
+          "type" : "boolean"
+        },
+        "type" : {
+          "const" : "custommachinery:drop"
+        }
+      },
+      "required" : [ "action", "mode", "type" ]
+    },
+    "RequirementIOMode" : {
+      "type" : "string",
+      "enum" : [ "INPUT", "input", "OUTPUT", "output" ]
     }
   },
   "type" : "object",
@@ -189,6 +288,10 @@
           "$ref" : "#/$defs/ChunkloadRequirement"
         }, {
           "$ref" : "#/$defs/CommandRequirement"
+        }, {
+          "$ref" : "#/$defs/DimensionRequirement"
+        }, {
+          "$ref" : "#/$defs/DropRequirement"
         } ]
       }
     },
@@ -217,6 +320,10 @@
           "$ref" : "#/$defs/ChunkloadRequirement"
         }, {
           "$ref" : "#/$defs/CommandRequirement"
+        }, {
+          "$ref" : "#/$defs/DimensionRequirement"
+        }, {
+          "$ref" : "#/$defs/DropRequirement"
         } ]
       }
     },

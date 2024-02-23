@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
   @JsonSubTypes.Type(value = ButtonRequirement.class, name = "custommachinery:button"),
   @JsonSubTypes.Type(value = ChunkloadRequirement.class, name = "custommachinery:chunkload"),
   @JsonSubTypes.Type(value = CommandRequirement.class, name = "custommachinery:command"),
+  @JsonSubTypes.Type(value = DimensionRequirement.class, name = "custommachinery:dimension"),
+  @JsonSubTypes.Type(value = DropRequirement.class, name = "custommachinery:drop"),
   // ADDONS
 })
 @JsonTypeInfo(
