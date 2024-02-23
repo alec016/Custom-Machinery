@@ -10,6 +10,5 @@ public class ItemStack {
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   private int Count;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-  @Pattern(regexp = "#?" + Init.RL)
-  private String tag;
+  private Object tag;
 }

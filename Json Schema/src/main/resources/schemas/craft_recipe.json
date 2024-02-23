@@ -287,10 +287,7 @@
         "id" : {
           "type" : "string"
         },
-        "tag" : {
-          "type" : "string",
-          "pattern" : "#?[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
-        }
+        "tag" : { }
       },
       "required" : [ "id" ]
     },
