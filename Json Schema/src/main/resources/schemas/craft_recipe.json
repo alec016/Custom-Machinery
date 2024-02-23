@@ -1,7 +1,59 @@
 {
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/craft_recipe.json",
+  "$defs" : {
+    "Requirement" : {
+      "type" : "object"
+    }
+  },
   "type" : "object",
-  "description": "CustomMachinery Craft recipe json schema definition",
-  "title": "CustomMachinery Craft Recipe"
+  "properties" : {
+    "hidden" : {
+      "type" : "boolean"
+    },
+    "jei" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/$defs/Requirement"
+      }
+    },
+    "jeiPriority" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "machine" : {
+      "type" : "string",
+      "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+    },
+    "output" : {
+      "type" : "object",
+      "properties" : {
+        "Count" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "tag" : {
+          "type" : "string",
+          "pattern" : "#?[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        }
+      },
+      "required" : [ "id" ]
+    },
+    "priority" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "requirements" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/$defs/Requirement"
+      }
+    }
+  },
+  "required" : [ "machine", "output" ],
+  "$id" : "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/craft_recipe.json",
+  "title" : "CustomMachinery Craft Recipe",
+  "description" : "CustomMachinery Craft recipe json schema definition"
 }

@@ -1,7 +1,73 @@
 {
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/machine_recipe.json",
+  "$defs" : {
+    "Requirement" : {
+      "type" : "object"
+    }
+  },
   "type" : "object",
-  "description": "CustomMachinery Machine recipe json schema definition",
-  "title": "CustomMachinery Machine Recipe"
+  "properties" : {
+    "appearance" : {
+      "type" : "object",
+      "properties" : {
+        "block" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "color" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "item" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "light" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0,
+          "maximum" : 15
+        }
+      }
+    },
+    "error" : {
+      "type" : "boolean"
+    },
+    "hidden" : {
+      "type" : "boolean"
+    },
+    "jei" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/$defs/Requirement"
+      }
+    },
+    "jeiPriority" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "machine" : {
+      "type" : "string",
+      "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+    },
+    "priority" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "requirements" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/$defs/Requirement"
+      }
+    },
+    "time" : {
+      "type" : "integer",
+      "format" : "int32",
+      "minimum" : 1
+    }
+  },
+  "required" : [ "machine", "time" ],
+  "$id" : "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/machine_recipe.json",
+  "title" : "CustomMachinery Machine Recipe",
+  "description" : "CustomMachinery Machine recipe json schema definition"
 }

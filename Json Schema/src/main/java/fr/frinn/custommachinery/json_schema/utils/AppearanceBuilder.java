@@ -1,4 +1,4 @@
-package fr.frinn.custommachinery.json_schema.machine.appearance;
+package fr.frinn.custommachinery.json_schema.utils;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.frinn.custommachinery.json_schema.Init;

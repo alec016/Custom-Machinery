@@ -1,6 +1,5 @@
 {
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/machine.json",
   "$defs" : {
     "AppearanceBuilder" : {
       "type" : "object",
@@ -2065,6 +2064,7 @@
     }
   },
   "required" : [ "name" ],
-  "description": "CustomMachinery machine json schema definition",
-  "title": "CustomMachinery Machine"
+  "$id" : "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/machine.json",
+  "title" : "CustomMachinery Machine",
+  "description" : "CustomMachinery machine json schema definition"
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import fr.frinn.custommachinery.json_schema.Init;
 import fr.frinn.custommachinery.json_schema.machine.components.Component;
 import fr.frinn.custommachinery.json_schema.machine.elements.Element;
+import fr.frinn.custommachinery.json_schema.utils.Appearance;
 import fr.frinn.custommachinery.json_schema.utils.Tooltip;
 import jakarta.validation.constraints.Pattern;
 import java.util.List;

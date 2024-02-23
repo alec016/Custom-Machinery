@@ -1,9 +1,9 @@
-package fr.frinn.custommachinery.json_schema.machine;
+package fr.frinn.custommachinery.json_schema.utils;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import fr.frinn.custommachinery.json_schema.Init;
-import fr.frinn.custommachinery.json_schema.machine.appearance.AppearanceBuilder;
+import fr.frinn.custommachinery.json_schema.utils.AppearanceBuilder;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
 import java.util.List;
