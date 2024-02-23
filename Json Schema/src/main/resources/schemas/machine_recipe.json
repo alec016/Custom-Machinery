@@ -264,6 +264,247 @@
       },
       "required" : [ "amount", "item", "mode", "type" ]
     },
+    "EffectRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "chance" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "delay" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "effect" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "filter" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+          }
+        },
+        "finish" : {
+          "type" : "boolean"
+        },
+        "level" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "radius" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "time" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "type" : {
+          "const" : "custommachinery:effect"
+        }
+      },
+      "required" : [ "effect", "radius", "time", "type" ]
+    },
+    "EnergyPerTickRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "chance" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "mode" : {
+          "$ref" : "#/$defs/RequirementIOMode"
+        },
+        "type" : {
+          "const" : "custommachinery:energy_per_tick"
+        }
+      },
+      "required" : [ "amount", "mode", "type" ]
+    },
+    "EnergyRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "chance" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "mode" : {
+          "$ref" : "#/$defs/RequirementIOMode"
+        },
+        "type" : {
+          "const" : "custommachinery:energy"
+        }
+      },
+      "required" : [ "amount", "mode", "type" ]
+    },
+    "EntityRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "action" : {
+          "type" : "string",
+          "enum" : [ "check_amount", "check_health", "consume_health", "kill" ]
+        },
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "chance" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "delay" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "mode" : {
+          "$ref" : "#/$defs/RequirementIOMode"
+        },
+        "radius" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "type" : {
+          "const" : "custommachinery:entity"
+        }
+      },
+      "required" : [ "action", "amount", "mode", "radius", "type" ]
+    },
+    "ExperienceForm" : {
+      "type" : "string",
+      "enum" : [ "level", "point" ]
+    },
+    "ExperiencePerTickRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "chance" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "form" : {
+          "$ref" : "#/$defs/ExperienceForm"
+        },
+        "mode" : {
+          "$ref" : "#/$defs/RequirementIOMode"
+        },
+        "type" : {
+          "const" : "custommachinery:experience_per_tick"
+        }
+      },
+      "required" : [ "amount", "mode", "type" ]
+    },
+    "ExperienceRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "chance" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "form" : {
+          "$ref" : "#/$defs/ExperienceForm"
+        },
+        "mode" : {
+          "$ref" : "#/$defs/RequirementIOMode"
+        },
+        "type" : {
+          "const" : "custommachinery:experience"
+        }
+      },
+      "required" : [ "amount", "mode", "type" ]
+    },
+    "FluidPerTickRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "chance" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "fluid" : {
+          "type" : "string",
+          "pattern" : "#?[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "mode" : {
+          "$ref" : "#/$defs/RequirementIOMode"
+        },
+        "nbt" : { },
+        "tank" : {
+          "type" : "string"
+        },
+        "type" : {
+          "const" : "custommachinery:fluid_per_tick"
+        }
+      },
+      "required" : [ "amount", "fluid", "mode", "type" ]
+    },
+    "FluidRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "chance" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "fluid" : {
+          "type" : "string",
+          "pattern" : "#?[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "mode" : {
+          "$ref" : "#/$defs/RequirementIOMode"
+        },
+        "nbt" : { },
+        "tank" : {
+          "type" : "string"
+        },
+        "type" : {
+          "const" : "custommachinery:fluid"
+        }
+      },
+      "required" : [ "amount", "fluid", "mode", "type" ]
+    },
     "ItemItem" : {
       "type" : "object",
       "properties" : {
@@ -339,6 +580,22 @@
           "$ref" : "#/$defs/DropRequirement"
         }, {
           "$ref" : "#/$defs/DurabilityRequirement"
+        }, {
+          "$ref" : "#/$defs/EffectRequirement"
+        }, {
+          "$ref" : "#/$defs/EnergyPerTickRequirement"
+        }, {
+          "$ref" : "#/$defs/EnergyRequirement"
+        }, {
+          "$ref" : "#/$defs/EntityRequirement"
+        }, {
+          "$ref" : "#/$defs/ExperienceRequirement"
+        }, {
+          "$ref" : "#/$defs/ExperiencePerTickRequirement"
+        }, {
+          "$ref" : "#/$defs/FluidRequirement"
+        }, {
+          "$ref" : "#/$defs/FluidPerTickRequirement"
         } ]
       }
     },
@@ -373,6 +630,22 @@
           "$ref" : "#/$defs/DropRequirement"
         }, {
           "$ref" : "#/$defs/DurabilityRequirement"
+        }, {
+          "$ref" : "#/$defs/EffectRequirement"
+        }, {
+          "$ref" : "#/$defs/EnergyPerTickRequirement"
+        }, {
+          "$ref" : "#/$defs/EnergyRequirement"
+        }, {
+          "$ref" : "#/$defs/EntityRequirement"
+        }, {
+          "$ref" : "#/$defs/ExperienceRequirement"
+        }, {
+          "$ref" : "#/$defs/ExperiencePerTickRequirement"
+        }, {
+          "$ref" : "#/$defs/FluidRequirement"
+        }, {
+          "$ref" : "#/$defs/FluidPerTickRequirement"
         } ]
       }
     },

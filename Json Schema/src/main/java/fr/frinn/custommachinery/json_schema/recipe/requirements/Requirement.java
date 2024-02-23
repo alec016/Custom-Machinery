@@ -12,6 +12,14 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
   @JsonSubTypes.Type(value = DimensionRequirement.class, name = "custommachinery:dimension"),
   @JsonSubTypes.Type(value = DropRequirement.class, name = "custommachinery:drop"),
   @JsonSubTypes.Type(value = DurabilityRequirement.class, name = "custommachinery:durability"),
+  @JsonSubTypes.Type(value = EffectRequirement.class, name = "custommachinery:effect"),
+  @JsonSubTypes.Type(value = EnergyPerTickRequirement.class, name = "custommachinery:energy_per_tick"),
+  @JsonSubTypes.Type(value = EnergyRequirement.class, name = "custommachinery:energy"),
+  @JsonSubTypes.Type(value = EntityRequirement.class, name = "custommachinery:entity"),
+  @JsonSubTypes.Type(value = ExperienceRequirement.class, name = "custommachinery:experience"),
+  @JsonSubTypes.Type(value = ExperiencePerTickRequirement.class, name = "custommachinery:experience_per_tick"),
+  @JsonSubTypes.Type(value = FluidRequirement.class, name = "custommachinery:fluid"),
+  @JsonSubTypes.Type(value = FluidPerTickRequirement.class, name = "custommachinery:fluid_per_tick"),
   // ADDONS
 })
 @JsonTypeInfo(
