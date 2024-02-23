@@ -1,8 +1,148 @@
 {
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
   "$defs" : {
-    "Requirement" : {
-      "type" : "object"
+    "BiomeRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "blacklist" : {
+          "type" : "boolean"
+        },
+        "filter" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+          }
+        },
+        "type" : {
+          "const" : "custommachinery:biome"
+        }
+      },
+      "required" : [ "filter", "type" ]
+    },
+    "BlockRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "action" : {
+          "type" : "string",
+          "enum" : [ "check", "break", "destroy", "place", "replace_break", "replace_destroy" ]
+        },
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 1
+        },
+        "block" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "chance" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "comparator" : {
+          "type" : "string",
+          "enum" : [ ">>", ">=", "==", "<=", "<<" ]
+        },
+        "delay" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "filter" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "pattern" : "#?[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+          }
+        },
+        "mode" : {
+          "type" : "string",
+          "enum" : [ "INPUT", "input", "OUTPUT", "output" ]
+        },
+        "pos" : {
+          "type" : "array",
+          "items" : {
+            "type" : "number",
+            "format" : "double"
+          }
+        },
+        "whitelist" : {
+          "type" : "boolean"
+        },
+        "type" : {
+          "const" : "custommachinery:block"
+        }
+      },
+      "required" : [ "action", "mode", "pos", "type" ]
+    },
+    "ButtonRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "inverse" : {
+          "type" : "boolean"
+        },
+        "type" : {
+          "const" : "custommachinery:button"
+        }
+      },
+      "required" : [ "id", "type" ]
+    },
+    "ChunkloadRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "radius" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 1,
+          "maximum" : 32
+        },
+        "type" : {
+          "const" : "custommachinery:chunkload"
+        }
+      },
+      "required" : [ "type" ]
+    },
+    "CommandRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "chance" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "command" : {
+          "type" : "string"
+        },
+        "delay" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "log" : {
+          "type" : "boolean"
+        },
+        "permissionlevel" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "phase" : {
+          "type" : "string",
+          "enum" : [ "starting", "crafting_tickable", "crafting_delayed", "ending" ]
+        },
+        "type" : {
+          "const" : "custommachinery:command"
+        }
+      },
+      "required" : [ "command", "phase", "type" ]
     }
   },
   "type" : "object",
@@ -39,7 +179,17 @@
     "jei" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/$defs/Requirement"
+        "anyOf" : [ {
+          "$ref" : "#/$defs/BiomeRequirement"
+        }, {
+          "$ref" : "#/$defs/BlockRequirement"
+        }, {
+          "$ref" : "#/$defs/ButtonRequirement"
+        }, {
+          "$ref" : "#/$defs/ChunkloadRequirement"
+        }, {
+          "$ref" : "#/$defs/CommandRequirement"
+        } ]
       }
     },
     "jeiPriority" : {
@@ -57,7 +207,17 @@
     "requirements" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/$defs/Requirement"
+        "anyOf" : [ {
+          "$ref" : "#/$defs/BiomeRequirement"
+        }, {
+          "$ref" : "#/$defs/BlockRequirement"
+        }, {
+          "$ref" : "#/$defs/ButtonRequirement"
+        }, {
+          "$ref" : "#/$defs/ChunkloadRequirement"
+        }, {
+          "$ref" : "#/$defs/CommandRequirement"
+        } ]
       }
     },
     "time" : {

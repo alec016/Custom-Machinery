@@ -30,7 +30,8 @@ public class Init {
     )
       .with(jacksonModule)
       .with(jakartaModule)
-      .with(Option.EXTRA_OPEN_API_FORMAT_VALUES);
+      .with(Option.EXTRA_OPEN_API_FORMAT_VALUES)
+      .with(Option.FLATTENED_ENUMS_FROM_TOSTRING);
 
     SchemaGenerator generator;
     try {
@@ -54,9 +55,9 @@ public class Init {
       generator = new SchemaGenerator(configBuilder.build());
       JsonNode machineSchema = generator.generateSchema(Machine.class);
       System.out.println(machineSchema.toPrettyString());
-      writer = new BufferedWriter(new FileWriter(schemaDir + "machine.json"));
-      writer.write(machineSchema.toPrettyString());
-      writer.flush();
+//      writer = new BufferedWriter(new FileWriter(schemaDir + "machine.json"));
+//      writer.write(machineSchema.toPrettyString());
+//      writer.flush();
 
       System.out.println("===================== Upgraded Machine =====================");
       configBuilder.forTypesInGeneral()
@@ -73,9 +74,9 @@ public class Init {
       generator = new SchemaGenerator(configBuilder.build());
       JsonNode upgradedMachineSchema = generator.generateSchema(UpgradedMachine.class);
       System.out.println(upgradedMachineSchema.toPrettyString());
-      writer = new BufferedWriter(new FileWriter(schemaDir + "upgraded_machine.json"));
-      writer.write(upgradedMachineSchema.toPrettyString());
-      writer.flush();
+//      writer = new BufferedWriter(new FileWriter(schemaDir + "upgraded_machine.json"));
+//      writer.write(upgradedMachineSchema.toPrettyString());
+//      writer.flush();
 
       System.out.println("===================== Craft Recipe =====================");
       configBuilder.forTypesInGeneral()
