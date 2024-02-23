@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
   @JsonSubTypes.Type(value = CommandRequirement.class, name = "custommachinery:command"),
   @JsonSubTypes.Type(value = DimensionRequirement.class, name = "custommachinery:dimension"),
   @JsonSubTypes.Type(value = DropRequirement.class, name = "custommachinery:drop"),
+  @JsonSubTypes.Type(value = DurabilityRequirement.class, name = "custommachinery:durability"),
   // ADDONS
 })
 @JsonTypeInfo(

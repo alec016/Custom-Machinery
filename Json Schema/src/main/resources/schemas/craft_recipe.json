@@ -190,23 +190,9 @@
           "type" : "array",
           "items" : {
             "anyOf" : [ {
-              "type" : "object",
-              "properties" : {
-                "item" : {
-                  "type" : "string",
-                  "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
-                }
-              },
-              "required" : [ "item" ]
+              "$ref" : "#/$defs/ItemItem"
             }, {
-              "type" : "object",
-              "properties" : {
-                "tag" : {
-                  "type" : "string",
-                  "pattern" : "#?[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
-                }
-              },
-              "required" : [ "tag" ]
+              "$ref" : "#/$defs/ItemTag"
             }, {
               "type" : "string",
               "pattern" : "#?[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
@@ -239,6 +225,65 @@
       },
       "required" : [ "action", "mode", "type" ]
     },
+    "DurabilityRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 1
+        },
+        "break" : {
+          "type" : "boolean"
+        },
+        "chance" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "item" : {
+          "anyOf" : [ {
+            "$ref" : "#/$defs/ItemItem"
+          }, {
+            "$ref" : "#/$defs/ItemTag"
+          }, {
+            "type" : "string"
+          } ]
+        },
+        "mode" : {
+          "$ref" : "#/$defs/RequirementIOMode"
+        },
+        "nbt" : { },
+        "slot" : {
+          "type" : "string"
+        },
+        "type" : {
+          "const" : "custommachinery:durability"
+        }
+      },
+      "required" : [ "amount", "item", "mode", "type" ]
+    },
+    "ItemItem" : {
+      "type" : "object",
+      "properties" : {
+        "item" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        }
+      },
+      "required" : [ "item" ]
+    },
+    "ItemTag" : {
+      "type" : "object",
+      "properties" : {
+        "tag" : {
+          "type" : "string",
+          "pattern" : "#?[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        }
+      },
+      "required" : [ "tag" ]
+    },
     "RequirementIOMode" : {
       "type" : "string",
       "enum" : [ "INPUT", "input", "OUTPUT", "output" ]
@@ -266,6 +311,8 @@
           "$ref" : "#/$defs/DimensionRequirement"
         }, {
           "$ref" : "#/$defs/DropRequirement"
+        }, {
+          "$ref" : "#/$defs/DurabilityRequirement"
         } ]
       }
     },
@@ -312,6 +359,8 @@
           "$ref" : "#/$defs/DimensionRequirement"
         }, {
           "$ref" : "#/$defs/DropRequirement"
+        }, {
+          "$ref" : "#/$defs/DurabilityRequirement"
         } ]
       }
     }
