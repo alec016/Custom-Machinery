@@ -9,10 +9,9 @@ public class ItemFilterRequirement {
   @JsonProperty(access = JsonProperty.Access.READ_WRITE, required = true)
   @JsonAlias("item")
   @JsonSubTypes({
-    @JsonSubTypes.Type(Ingredient.class),
     @JsonSubTypes.Type(Ingredient[].class)
   })
-  private Ingredient[] ingredient;
+  private Ingredient ingredient;
   @JsonProperty(access = JsonProperty.Access.READ_WRITE)
   private String slot;
 }

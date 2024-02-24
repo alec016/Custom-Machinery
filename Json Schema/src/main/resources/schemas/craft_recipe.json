@@ -520,7 +520,46 @@
       "required" : [ "type" ]
     },
     "ItemFilterRequirement" : {
-      "type" : "object"
+      "type" : "object",
+      "properties" : {
+        "ingredient" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "anyOf" : [ {
+                "type" : "object",
+                "properties" : {
+                  "item" : {
+                    "type" : "object",
+                    "properties" : {
+                      "item" : {
+                        "type" : "string",
+                        "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+                      }
+                    },
+                    "required" : [ "item" ]
+                  }
+                },
+                "required" : [ "item" ]
+              }, {
+                "type" : "object",
+                "properties" : {
+                  "tag" : {
+                    "type" : "string",
+                    "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+                  }
+                },
+                "required" : [ "tag" ]
+              } ]
+            }
+          }
+        },
+        "slot" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "ingredient" ]
     },
     "ItemItem" : {
       "type" : "object",
@@ -630,7 +669,7 @@
       "properties" : {
         "light" : {
           "type" : "string",
-          "pattern" : "[[\\[|\\(]]\\d+,?\\d+[\\]|\\)]]+|\\d|\\*|]"
+          "description" : "see https://frinn.gitbook.io/custom-machinery-1.19/misc/range for valid ranges"
         },
         "sky" : {
           "type" : "boolean"
