@@ -505,6 +505,23 @@
       },
       "required" : [ "amount", "fluid", "mode", "type" ]
     },
+    "FuelRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 1
+        },
+        "type" : {
+          "const" : "custommachinery:fuel"
+        }
+      },
+      "required" : [ "type" ]
+    },
+    "ItemFilterRequirement" : {
+      "type" : "object"
+    },
     "ItemItem" : {
       "type" : "object",
       "properties" : {
@@ -515,6 +532,41 @@
       },
       "required" : [ "item" ]
     },
+    "ItemRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "chance" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "item" : {
+          "anyOf" : [ {
+            "$ref" : "#/$defs/ItemItem"
+          }, {
+            "$ref" : "#/$defs/ItemTag"
+          }, {
+            "type" : "string"
+          } ]
+        },
+        "mode" : {
+          "$ref" : "#/$defs/RequirementIOMode"
+        },
+        "nbt" : { },
+        "slot" : {
+          "type" : "string"
+        },
+        "type" : {
+          "const" : "custommachinery:item"
+        }
+      },
+      "required" : [ "amount", "item", "mode", "type" ]
+    },
     "ItemTag" : {
       "type" : "object",
       "properties" : {
@@ -524,6 +576,70 @@
         }
       },
       "required" : [ "tag" ]
+    },
+    "ItemTransformRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "chance" : {
+          "type" : "number",
+          "format" : "double",
+          "minimum" : 0,
+          "maximum" : 1
+        },
+        "copy_nbt" : {
+          "type" : "boolean"
+        },
+        "input" : {
+          "anyOf" : [ {
+            "$ref" : "#/$defs/ItemItem"
+          }, {
+            "$ref" : "#/$defs/ItemTag"
+          }, {
+            "type" : "string"
+          } ]
+        },
+        "input_amount" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 1
+        },
+        "input_nbt" : { },
+        "input_slot" : {
+          "type" : "string"
+        },
+        "output" : {
+          "type" : "string",
+          "pattern" : "[a-z]+[a-z|_]*[a-z]:[a-z]+[a-z|_|/|#|,|=|\\.]*[a-z]$"
+        },
+        "output_amount" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 1
+        },
+        "output_slot" : {
+          "type" : "string"
+        },
+        "type" : {
+          "const" : "custommachinery:item_transform"
+        }
+      },
+      "required" : [ "input", "type" ]
+    },
+    "LightRequirement" : {
+      "type" : "object",
+      "properties" : {
+        "light" : {
+          "type" : "string",
+          "pattern" : "[[\\[|\\(]?]\\d+,?\\d[\\]|\\)]+]|\\d|\\*|]"
+        },
+        "sky" : {
+          "type" : "boolean"
+        },
+        "type" : {
+          "const" : "custommachinery:light"
+        }
+      },
+      "required" : [ "light", "type" ]
     },
     "RequirementIOMode" : {
       "type" : "string",
@@ -596,6 +712,16 @@
           "$ref" : "#/$defs/FluidRequirement"
         }, {
           "$ref" : "#/$defs/FluidPerTickRequirement"
+        }, {
+          "$ref" : "#/$defs/FuelRequirement"
+        }, {
+          "$ref" : "#/$defs/ItemFilterRequirement"
+        }, {
+          "$ref" : "#/$defs/ItemRequirement"
+        }, {
+          "$ref" : "#/$defs/ItemTransformRequirement"
+        }, {
+          "$ref" : "#/$defs/LightRequirement"
         } ]
       }
     },
@@ -646,6 +772,16 @@
           "$ref" : "#/$defs/FluidRequirement"
         }, {
           "$ref" : "#/$defs/FluidPerTickRequirement"
+        }, {
+          "$ref" : "#/$defs/FuelRequirement"
+        }, {
+          "$ref" : "#/$defs/ItemFilterRequirement"
+        }, {
+          "$ref" : "#/$defs/ItemRequirement"
+        }, {
+          "$ref" : "#/$defs/ItemTransformRequirement"
+        }, {
+          "$ref" : "#/$defs/LightRequirement"
         } ]
       }
     },

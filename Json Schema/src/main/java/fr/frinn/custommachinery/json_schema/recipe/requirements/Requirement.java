@@ -20,6 +20,11 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
   @JsonSubTypes.Type(value = ExperiencePerTickRequirement.class, name = "custommachinery:experience_per_tick"),
   @JsonSubTypes.Type(value = FluidRequirement.class, name = "custommachinery:fluid"),
   @JsonSubTypes.Type(value = FluidPerTickRequirement.class, name = "custommachinery:fluid_per_tick"),
+  @JsonSubTypes.Type(value = FuelRequirement.class, name = "custommachinery:fuel"),
+  @JsonSubTypes.Type(value = ItemFilterRequirement.class, name = "custommachinery:item_filter"),
+  @JsonSubTypes.Type(value = ItemRequirement.class, name = "custommachinery:item"),
+  @JsonSubTypes.Type(value = ItemTransformRequirement.class, name = "custommachinery:item_transform"),
+  @JsonSubTypes.Type(value = LightRequirement.class, name = "custommachinery:light"),
   // ADDONS
 })
 @JsonTypeInfo(
