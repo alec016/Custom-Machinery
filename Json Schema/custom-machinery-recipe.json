@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "patternProperties": {
+    "^.+$": {
+      "type": "object",
+      "if": {
+        "required": ["output"]
+      },
+      "then": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/craft_recipe.json",
+      "else": {
+        "if": {
+          "required": ["time"]
+        },
+        "then": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/machine_recipe.json",
+        "else": "https://json-schema.org/draft/2020-12/schema"
+      }
+    }
+  }
+}
