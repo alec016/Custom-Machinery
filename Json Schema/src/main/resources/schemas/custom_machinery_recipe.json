@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/custom-machinery-recipe.json",
+  "$id": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/custom_machinery_recipe.json",
   "allOf": [
     {
       "if": {
