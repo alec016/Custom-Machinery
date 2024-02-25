@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/custom-machinery-recipe.json",
+  "type": "object",
+  "$defs": {
+    "craft": {
+      "$schema": "./craft_recipe.json"
+    },
+    "machine": {
+      "$schema": "./machine_recipe.json"
+    }
+  }
+  "patternProperties": {
+    "^.+$": {
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": ["output"]
+          },
+          "then": {
+            "$ref": "#/$defs/craft"
+          }
+        },
+        {
+          "if": {
+            "required": ["time"]
+          },
+          "then": {
+            "$ref": "#/$defs/machine"
+          }
+        }
+      ]
+    }
+  }
+}
