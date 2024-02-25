@@ -9,7 +9,7 @@
     "upgraded": {
       "$schema": "./upgraded_machine.json"
     }
-  }
+  },
   "patternProperties": {
     "^.+$": {
       "type": "object",

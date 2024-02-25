@@ -9,7 +9,7 @@
     "machine": {
       "$schema": "./machine_recipe.json"
     }
-  }
+  },
   "patternProperties": {
     "^.+$": {
       "type": "object",
