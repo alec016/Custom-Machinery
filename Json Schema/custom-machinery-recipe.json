@@ -1,19 +1,34 @@
 {
   "type": "object",
+  "$defs": {
+    "craft": {
+      "$schema": "./src/main/resources/schemas/craft_recipe.json"
+    },
+    "machine": {
+      "$schema": "./src/main/resources/schemas/machine_recipe.json"
+    }
+  }
   "patternProperties": {
     "^.+$": {
       "type": "object",
-      "if": {
-        "required": ["output"]
-      },
-      "then": "./src/main/resources/schemas/craft_recipe.json",
-      "else": {
-        "if": {
-          "required": ["time"]
+      "allOf": [
+        {
+          "if": {
+            "required": ["output"]
+          },
+          "then": {
+            "$ref": "#/$defs/craft"
+          }
         },
-        "then": "./src/main/resources/schemas/machine_recipe.json",
-        "else": "https://json-schema.org/draft/2020-12/schema"
-      }
+        {
+          "if": {
+            "required": ["time"]
+          },
+          "then": {
+            "$ref": "#/$defs/machine"
+          }
+        }
+      ]
     }
   }
 }
