@@ -1,15 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/custom_machinery_machine.json",
-  "type": "object",
-  "$defs": {
-    "machine": {
-      "$schema": "./machine.json"
-    },
-    "upgraded": {
-      "$schema": "./upgraded_machine.json"
-    }
-  },
   "patternProperties": {
     "^.+$": {
       "type": "object",
@@ -19,7 +10,7 @@
             "required": ["name"]
           },
           "then": {
-            "$ref": "#/$defs/machine"
+            "$ref": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/machine.json"
           }
         },
         {
@@ -27,7 +18,7 @@
             "required": ["parent"]
           },
           "then": {
-            "$ref": "#/$defs/upgraded"
+            "$ref": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/upgraded_machine.json"
           }
         }
       ]
