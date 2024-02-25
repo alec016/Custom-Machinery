@@ -1,19 +1,34 @@
 {
   "type": "object",
+  "$defs": {
+    "machine": {
+      "$schema": "./src/main/resources/schemas/machine.json"
+    },
+    "upgraded": {
+      "$schema": "./src/main/resources/schemas/upgraded_machine.json"
+    }
+  }
   "patternProperties": {
     "^.+$": {
       "type": "object",
-      "if": {
-        "required": ["name"]
-      },
-      "then": "./src/main/resources/schemas/machine.json",
-      "else": {
-        "if": {
-          "required": ["parent"]
+      "allOf": [
+        {
+          "if": {
+            "required": ["name"]
+          },
+          "then": {
+            "$ref": "#/$defs/machine"
+          }
         },
-        "then": "./src/main/resources/schemas/upgraded_machine.json",
-        "else": "https://json-schema.org/draft/2020-12/schema"
-      }
+        {
+          "if": {
+            "required": ["parent"]
+          },
+          "then": {
+            "$ref": "#/$defs/upgraded"
+          }
+        }
+      ]
     }
   }
 }
