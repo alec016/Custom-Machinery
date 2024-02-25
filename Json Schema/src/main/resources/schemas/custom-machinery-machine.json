@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/custom-machinery-machine.json",
+  "type": "object",
+  "$defs": {
+    "machine": {
+      "$schema": "./machine.json"
+    },
+    "upgraded": {
+      "$schema": "./upgraded_machine.json"
+    }
+  }
+  "patternProperties": {
+    "^.+$": {
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": ["name"]
+          },
+          "then": {
+            "$ref": "#/$defs/machine"
+          }
+        },
+        {
+          "if": {
+            "required": ["parent"]
+          },
+          "then": {
+            "$ref": "#/$defs/upgraded"
+          }
+        }
+      ]
+    }
+  }
+}
