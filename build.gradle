@@ -43,9 +43,10 @@ allprojects {
         }
         maven {
             name = "Latvian maven"
-            url = "https://maven.saps.dev/minecraft"
+            url = "https://maven.latvian.dev/releases"
             content {
                 includeGroup "dev.latvian.mods"
+                includeGroup "dev.latvian.apps"
                 includeGroup "dev.ftb.mods"
             }
         }
@@ -140,9 +141,9 @@ allprojects {
             repositories {
                 maven {
                     name = 'maven'
-                    url = 'https://maven.frinn.fr/repository/maven/'
+                    url = 'https://maven.frinn.fr/releases/'
                     credentials {
-                        username = 'frinn'
+                        username = 'Frinn'
                         password = System.getenv('MAVEN_PASSWORD')
                     }
                 }
