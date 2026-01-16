@@ -4,7 +4,12 @@
   "allOf": [
     {
       "if": {
-        "required": ["output"]
+        "properties": {
+          "type": {
+            "enum": ["custommachinery:custom_craft"],
+            "required": true
+          }
+        }
       },
       "then": {
         "$ref": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/craft_recipe.json"
@@ -12,7 +17,12 @@
     },
     {
       "if": {
-        "required": ["time"]
+        "properties": {
+          "type": {
+            "enum": ["custommachinery:custom_machine"],
+            "required": true
+          }
+        }
       },
       "then": {
         "$ref": "https://alec016.github.io/Custom-Machinery/Json%20Schema/src/main/resources/schemas/machine_recipe.json"
